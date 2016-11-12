@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static 'css/style_no_pre.css' %}">
+<title>Datalab</title>
+</head>
+<body>
+<h1>Datalab</h1>
+
+<section id="actions">
+    <div class="action"><a href="#">add datapoint</a></div>
+    <div class="action"><a href="#">labels</a></div>
+    <div class="action"><a href="#">entities</a></div>
+    <div class="action"><a href="#">download as csv</a></div>
+    <div class="action"><a href="#">import csv</a></div>
+</section>
+
+{% block content %}
+{% endblock %}
+
+<script src="{% static 'js/lab.js' %}"></script>

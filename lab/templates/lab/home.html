@@ -1,23 +1,6 @@
-{% load staticfiles %}
-<!doctype html>
-<html>
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="{% static 'css/style_no_pre.css' %}">
-<title>Datalab</title>
-</head>
-<body>
-<h1>Datalab</h1>
+{% extends 'lab/base.html' %}
 
-<section id="actions">
-    <div class="action"><a href="#">add datapoint</a></div>
-    <div class="action"><a href="#">labels</a></div>
-    <div class="action"><a href="#">entities</a></div>
-    <div class="action"><a href="#">download as csv</a></div>
-    <div class="action"><a href="#">import csv</a></div>
-</section>
-
+{% block content %}
 <section id="datapoints">
     <div class="dp_header">
         <span class="w10">#</span>
@@ -30,7 +13,8 @@
         <span class="w10">{{ dp.id }}</span>
         <span class="w10">{{ dp.entity_type }}</span>
         <span class="w33">{{ dp.data|truncatechars:32  }}</span>
-        <span class="w25"></span>
+        <span class="w25"><a href="#" class="add_label" data-id="{{ dp.id }}">add label</a><a href="/edit_labels/{{ dp.id }}">edit labels</a></span>
     </div>
 {% endfor %}
 </section>
+{% endblock %}
