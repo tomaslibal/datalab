@@ -34,8 +34,7 @@ def entity_image(request, datapoint_id, out_w=32, out_h=32):
         rgb.append((int(px), 0, 0))
 
     img.putdata(rgb)
-    # img.thumbnail((out_w, out_h), Image.ANTIALIAS)
-    img.resize((300, 300), Image.ANTIALIAS)
+    img.thumbnail((out_w, out_h), Image.ANTIALIAS)
     img.save(response, "PNG")
     return response
 
