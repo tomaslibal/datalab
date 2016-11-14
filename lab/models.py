@@ -22,7 +22,7 @@ class Datapoint(models.Model):
     data = models.TextField()
     description = models.CharField(blank=True, max_length=256)
     active = models.BooleanField(default=True)
-    labels = models.ManyToManyField(Label)
+    labels = models.ManyToManyField(Label, blank=True)
 
     def __str__(self):
         return self.description
