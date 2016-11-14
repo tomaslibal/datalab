@@ -12,6 +12,7 @@ class Entity(models.Model):
 class Datapoint(models.Model):
     entity_type = models.ForeignKey(Entity, on_delete=models.CASCADE, default='')
     data = models.TextField()
+    description = models.CharField(blank=True, max_length=256)
     active = models.BooleanField(default=True)
 
 class Label(models.Model):
