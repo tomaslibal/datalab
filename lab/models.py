@@ -12,7 +12,7 @@ class Entity(models.Model):
 class Label(models.Model):
     name = models.CharField(max_length=128)
     description = models.CharField(blank=True, max_length=128)
-    weight = models.FloatField(default=1.0)
+    weight = models.FloatField(blank=True, default=1.0)
 
     def __str__(self):
         return self.name
