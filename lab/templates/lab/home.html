@@ -6,13 +6,21 @@
         <span class="w10">#</span>
         <span class="w10">entity type</span>
         <span class="w33">data</span>
+        <span class="w10">desc.</span>
         <span class="w25">labels</span>
     </div>
 {% for dp in datapoints %}
     <div class="dp">
         <span class="w10">{{ dp.id }}</span>
         <span class="w10">{{ dp.entity_type }}</span>
-        <span class="w33">{{ dp.data|truncatechars:32  }}</span>
+        <span class="w33">
+           {% if dp.entity_type.name == 'image' %}
+               <img src="/api/datapoint/as_image/{{ dp.id }}">
+           {% else %}
+               {{ dp.data|truncatechars:32  }}
+           {% endif %}
+        </span>
+        <span class="w10">{{ dp.description|truncatechars:32 }}</span>
         <span class="w25">
             {% for label in dp.labels.all %}
                 {{ label }}
