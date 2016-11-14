@@ -13,7 +13,12 @@
         <span class="w10">{{ dp.id }}</span>
         <span class="w10">{{ dp.entity_type }}</span>
         <span class="w33">{{ dp.data|truncatechars:32  }}</span>
-        <span class="w25"><a href="#" class="add_label" data-id="{{ dp.id }}">add label</a><a href="/edit_labels/{{ dp.id }}">edit labels</a></span>
+        <span class="w25">
+            {% for label in dp.labels.all %}
+                {{ label }}
+            {% endfor %}
+            <a href="#" class="add_label" data-id="{{ dp.id }}">add label</a><a href="/edit_labels/{{ dp.id }}">edit labels</a>
+        </span>
     </div>
 {% endfor %}
 </section>
