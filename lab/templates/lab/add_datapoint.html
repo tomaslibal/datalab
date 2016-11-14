@@ -2,7 +2,7 @@
 
 {% block content %}
 <section id="add_datapoint">
-   <form action="/add_datapoint/" method="POST" name="add_datapoint_form">{% csrf_token %}
+   <form action="/add_datapoint/" method="POST" name="add_datapoint_form" enctype="multipart/form-data">{% csrf_token %}
       Description <input type="text" name="desc">
       Entity type <select name="entity_type">
       {% for et in entity_types %}
@@ -11,6 +11,8 @@
       </select>
 
       Data <textarea name="data"></textarea>
+
+      File <input type="file" name="image">
 
       Label 1 <input type="text" name="labels[]">
       Label 2 <input type="text" name="labels[]">
