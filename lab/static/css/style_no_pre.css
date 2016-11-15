@@ -3,6 +3,10 @@
     padding: 0;
 }
 
+body {
+    font-family: sans-serif;
+}
+
 #datapoints {
    margin: 20px 0;
 
@@ -24,6 +28,7 @@
     padding: 10px 0;
 }
 
+.w5 { width: 5%; }
 .w10 { width: 10%; }
 .w25 { width: 25%; }
 .w33 { width: 33%; }
@@ -31,3 +36,49 @@
 .w66 { width: 66%; }
 .w75 { width: 75%; }
 .w100 { width: 100%; }
+
+#actions {
+    width: 100%;
+    overflow: hidden;
+}
+
+#actions .action {
+    float: left;
+    width: 96px;
+    height: 96px;
+    margin: 0 5px;
+    border: 1px solid grey;
+}
+
+#actions .action a {
+    display: inline-block;
+    padding-top: 15px;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+a, a:visited {
+    color: #a547bc;
+}
+
+
+h1 {
+
+}
+
+.container {
+    padding: 0 20px;
+}
+
+#head {
+    background: #effcfa;
+    height: 30px;
+    border-bottom: 1px solid #97e5db;
+    padding: 5px 20px;
+    margin: 0 0 30px 0;
+}
+
+#head h1 {
+    font-size: 28px;
+}
