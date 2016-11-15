@@ -1,3 +1,22 @@
+function readCookieVal(name) {
+    var cookieVal;
+
+    if (document.cookie && document.cookie !== '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieVal = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieVal;
+}
+
+var csrfToken = readCookieVal('csrftoken');
+
 function ClickManager(element, eventType, handlers) {
     function handleEvent(event) {
         var target = event.target;
@@ -18,6 +37,21 @@ function q(querys, parent) {
     return el.querySelector(querys);
 }
 
+function sendReq(url, method, params, callback) {
+    var is_async = true;
+
+    method = method || 'GET';
+
+    httpRequest = new XMLHttpRequest();
+    httpRequest.open(method, url, is_async);
+    if (method === 'POST') {
+        httpRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    }
+    httpRequest.setRequestHeader('X-CSRFToken', csrfToken);
+    httpRequest.addEventListener('load', callback);
+    httpRequest.send(params);
+}
+
 function createElement(elType, customFactory) {
     var creator = customFactory || document;
     return creator.createElement(elType);
@@ -32,7 +66,11 @@ function drawAddLabelForm(parent, id) {
     buttonEl.innerHTML = 'add';
     buttonEl.addEventListener('click', function(event) {
         event.preventDefault();
+        sendReq('/api/datapoint/' + id + '/labels/', 'POST', 'name=' + inputEl.value);
         closeAddLabelHandler(divEl);
+        var labelEl = createElement('span');
+        labelEl.innerHTML = inputEl.value;
+        parent.insertBefore(labelEl, parent.firstChild);
     });
     
     divEl.appendChild(inputEl);
