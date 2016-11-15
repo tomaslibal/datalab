@@ -8,17 +8,21 @@
 <title>Datalab</title>
 </head>
 <body>
-<h1><a href="/">Datalab</a></h1>
+<section id="head">
+    <h1><a href="/">Datalab</a></h1>
+</section>
 
+<div class="container">
 <section id="actions">
-    <div class="action"><a href="/add_datapoint">add datapoint</a></div>
+    <div class="action"><a href="/add_datapoint">➕<br>add datapoint</a></div>
     <div class="action"><a href="#">labels</a></div>
     <div class="action"><a href="#">entities</a></div>
-    <div class="action"><a href="#">download as csv</a></div>
-    <div class="action"><a href="#">import csv</a></div>
+    <div class="action"><a href="#">⬇️<br>download as csv</a></div>
+    <div class="action"><a href="#">⬆️<br>import csv</a></div>
 </section>
 
 {% block content %}
 {% endblock %}
+</div><!--/.container-->
 
 <script src="{% static 'js/lab.js' %}"></script>
