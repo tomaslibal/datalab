@@ -9,7 +9,7 @@ import tempfile
 
 from .models import Datapoint, Entity, Label
 
-def get_pixels(path, width=32, height=32):
+def get_pixels(path, width=96, height=96):
     img = Image.open(path)
     img.thumbnail((width, height), Image.ANTIALIAS)
     p = list(img.getdata())
