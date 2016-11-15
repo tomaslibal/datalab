@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_protect
 
 from PIL import Image
 
@@ -7,7 +8,7 @@ from math import sqrt
 
 from .models import Datapoint, Entity
 
-# Create your views here.
+@csrf_protect
 def home(request):
     datapoints = Datapoint.objects.all()
     return render(request, 'lab/home.html', {'datapoints': datapoints})
