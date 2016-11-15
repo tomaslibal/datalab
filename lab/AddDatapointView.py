@@ -44,17 +44,18 @@ class AddDatapointView(View):
         if uploads is not None:
             d, _, _ = handle_uploaded_file(uploads)
 
-        label_names = request.POST.get('labels', [])
-        labels = []
+        label_names = request.POST.getlist('labels[]', [])
+
+        dp = Datapoint(entity_type=et, data=d, description=desc)
+        dp.save()        
+
         for label in label_names:
             obj, created = Label.objects.get_or_create(
                 name=label
             )
-            labels.append(obj)
+            dp.labels.add(obj)
 
-        dp = Datapoint(entity_type=et, data=d, description=desc)
         dp.save()
-        dp.labels.add(*labels)
         datapoints = Datapoint.objects.all()
         return HttpResponseRedirect('/', { 'msg_ok': 'datapoint_added' })
         # return render(request, 'lab/home.html', {'datapoints': datapoints, 'msg_ok': 'datapoint_added' })

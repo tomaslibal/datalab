@@ -3,22 +3,22 @@
 {% block content %}
 <section id="add_datapoint">
    <form action="/add_datapoint/" method="POST" name="add_datapoint_form" enctype="multipart/form-data">{% csrf_token %}
-      Description <input type="text" name="desc">
-      Entity type <select name="entity_type">
+      <div>Description <input type="text" name="desc"></div>
+      <div>Entity type <select name="entity_type">
       {% for et in entity_types %}
           <option value="{{ et.id }}">{{ et.name }}</select>
       {% endfor %}
-      </select>
+      </select></div>
 
-      Data <textarea name="data"></textarea>
+      <div><div>Data <textarea name="data"></textarea></div>
 
-      File <input type="file" name="image">
+      <div>File <input type="file" name="image"></div>
 
-      Label 1 <input type="text" name="labels[]">
-      Label 2 <input type="text" name="labels[]">
-      Label 3 <input type="text" name="labels[]">
+      <div>Label 1 <input type="text" name="labels[]"></div>
+      <div>Label 2 <input type="text" name="labels[]"></div>
+      <div>Label 3 <input type="text" name="labels[]"></div>
     
-      <button type="submit" name="submit">Add</button>
+      <div><button type="submit" name="submit">Add</button></div>
    </form>
 </section>
 {% endblock %}
