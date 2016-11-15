@@ -1,11 +1,13 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import View
+from django.apps import apps
 
 from PIL import Image
 from io import BytesIO
 
 import tempfile
+
 
 from .models import Datapoint, Entity, Label
 
@@ -22,7 +24,6 @@ def handle_uploaded_file(f):
     for chunk in f.chunks():
         tmp.write(chunk)
     tmp.seek(0)
-    #stream = BytesIO(f)
     res = get_pixels(tmp.name)
     tmp.close()
     return res
