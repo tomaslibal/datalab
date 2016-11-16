@@ -103,12 +103,38 @@ function addLabelHandler(event) {
     drawAddLabelForm(event.target.parentElement, id);
 }
 
+function updateUsageNum(label_id, spanEl) {
+    function onload() {
+        spanEl.innerHTML = this.responseText;
+    }
+
+    sendReq('/api/labels/' + label_id + '/usagenum/', 'GET', undefined, onload);
+}
+
+function LabelsMgr(table) {
+    var labels = table.querySelectorAll('.label');
+    for (var i = 0; i < labels.length; i+=1) {
+        var label = labels[i];
+        var usagenumEl = label.querySelector('.usagenum');
+        updateUsageNum(label.dataset.id, usagenumEl);
+    }
+}
+
 function startup(event) {
     var datapointsEl = q("#datapoints");
     var handlers = {
         "add_label": addLabelHandler
     };
-    var datapointsClickMgr = new ClickManager(datapointsEl, "click", handlers);
+
+    if (datapointsEl) {
+        var datapointsClickMgr = new ClickManager(datapointsEl, "click", handlers);
+    }
+
+    /* labels page */
+    var labelsTable = q('#labels');
+    if (labelsTable) {
+        var labelsMgr = new LabelsMgr(labelsTable);
+    }
 }
 
 document.addEventListener("DOMContentLoaded", startup);
