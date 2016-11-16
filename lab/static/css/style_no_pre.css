@@ -51,6 +51,11 @@ body {
     border: 1px solid grey;
 }
 
+#actions .action.active {
+    border: 3px solid grey;
+    background: #fff3e5;
+}
+
 #actions .action a {
     display: inline-block;
     padding-top: 15px;
@@ -90,6 +95,10 @@ h1 {
     padding: 10px 5px;
 }
 
+#entities .entity {
+    background: #ede8e3;
+}
+
 #labels .label {
     background: #ede8e3;
 }
@@ -98,6 +107,7 @@ h1 {
     display: inline-block;
 }
 
+#entities .entity span,
 #labels .label span {
     display: inline-block;
     padding: 0 5px;
