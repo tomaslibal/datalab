@@ -6,9 +6,12 @@ from .DatapointLabelManager import DatapointLabelManager
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+
     url(r'edit_labels/(?P<datapoint_id>\d{0,16})/$', views.edit_labels, name='edit_labels'),
     url(r'add_datapoint/$', AddDatapointView.as_view(), name='add_datapoint'),
     url(r'entities/$', views.entities, name='entities'),
+    url(r'entities/(?P<entity_id>\d{0,16})/$', views.entity_detail, name='entity_detail'),
+
     url(r'^api/datapoints/as_csv/$', CsvDownloader.as_view(), name='download_as_csv'),
     url(r'^api/datapoint/(?P<datapoint_id>\d{0,16})/labels/$', DatapointLabelManager.as_view(), name='datapoint_label_manager'),
     url(r'^api/datapoint/as_image/(?P<datapoint_id>\d{0,16})/$', views.entity_image, name='entity_image'),

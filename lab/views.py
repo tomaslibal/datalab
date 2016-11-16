@@ -25,6 +25,10 @@ def entities(request):
     entities = Entity.objects.all()
     return render(request, 'lab/entities.html', { 'entities': entities })
 
+def entity_detail(request, entity_id):
+    entity = Entity.objects.get(id=entity_id)
+    return render(request, 'lab/detail_entity.html', { 'entity': entity })
+
 def entity_image(request, datapoint_id, out_w=32, out_h=32):
     # passed in arguments from django url are always strings
     out_w = int(out_w)
