@@ -30,6 +30,7 @@ body {
 
 .w5 { width: 5%; }
 .w10 { width: 10%; }
+.w15 { width: 15%; }
 .w25 { width: 25%; }
 .w33 { width: 33%; }
 .w50 { width: 50%; }
@@ -81,4 +82,19 @@ h1 {
 
 #head h1 {
     font-size: 28px;
+}
+
+#labels .label {
+    background: #ede8e3;
+    margin: 5px 0px;
+    padding: 10px 5px;
+}
+
+#labels .label .usagenumWrapper {
+    display: inline-block;
+}
+
+#labels .label span {
+    display: inline-block;
+    padding: 0 5px;
 }
