@@ -6,7 +6,7 @@ from PIL import Image
 
 from math import sqrt
 
-from .models import Datapoint, Entity
+from .models import Datapoint, Entity, Label
 
 @csrf_protect
 def home(request):
@@ -28,6 +28,18 @@ def entities(request):
 def entity_detail(request, entity_id):
     entity = Entity.objects.get(id=entity_id)
     return render(request, 'lab/detail_entity.html', { 'entity': entity })
+
+def labels(request):
+    labels = Label.objects.all()
+    return render(request, 'lab/labels.html', { 'labels': labels })
+
+"""
+returns how many datapoints use the given label
+"""
+def num_datapoints_use_label(request, label_id):
+    num = Datapoint.objects.filter(labels__id__exact=label_id).count()
+    response = HttpResponse(num, content_type="text/plain")
+    return response   
 
 def entity_image(request, datapoint_id, out_w=32, out_h=32):
     # passed in arguments from django url are always strings
