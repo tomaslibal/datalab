@@ -8,7 +8,7 @@
 
 <section id="entities">
     {% for et in entities %}
-        <div class="entity">{{ et.name }}<span><a href="/entities/{{ et.id }}">edit</a></span></div>
+        <div class="entity"><span class="w15">{{ et.name }}</span><span class="w15"><a href="/entities/{{ et.id }}">edit</a></span></div>
     {% endfor %}
 </section>
 

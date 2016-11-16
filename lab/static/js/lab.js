@@ -120,11 +120,40 @@ function LabelsMgr(table) {
     }
 }
 
+function removeClassFromChildren(parentEl, clsName) {
+    var els = parentEl.querySelectorAll('.' + clsName);
+    for(var i = 0; i < els.length; i+=1) {
+        els[i].classList.remove(clsName);
+    }
+}
+
+function setActiveClass(el) {
+    el.classList.add('active');
+}
+
+function updateActiveActionsBt(location) {
+    var path = location.pathname;
+
+    var actions = q('#actions');
+
+    var clsName = path.replace(/\//g, '');
+
+    removeClassFromChildren(actions, 'active');
+
+    if (path == "/") {
+        setActiveClass(q('.home', actions));
+    } else {
+        setActiveClass(q('.' + clsName, actions));
+    }
+}
+
 function startup(event) {
     var datapointsEl = q("#datapoints");
     var handlers = {
         "add_label": addLabelHandler
     };
+
+    updateActiveActionsBt(location);
 
     if (datapointsEl) {
         var datapointsClickMgr = new ClickManager(datapointsEl, "click", handlers);
