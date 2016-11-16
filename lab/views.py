@@ -35,7 +35,7 @@ def entity_image(request, datapoint_id, out_w=32, out_h=32):
     
     rgb = []
     for px in pixels:
-        rgb.append((int(px), 0, 0))
+        rgb.append((int(px), int(px), int(px)))
 
     img.putdata(rgb)
     img.thumbnail((out_w, out_h), Image.ANTIALIAS)
