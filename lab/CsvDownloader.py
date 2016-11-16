@@ -12,7 +12,10 @@ class CsvDownloader(View):
         with tempfile.NamedTemporaryFile(mode='w+', suffix='.csv') as tmp:
             datapoints = Datapoint.objects.all()
             for dp in datapoints:
-                tmp.write(str(dp.id) + '|' + str(dp.data) + '\n')     
+                labels = []
+                for label in dp.labels.all():
+                    labels.append(label.name)
+                tmp.write(str(dp.data) + '|' + "|".join(labels) + '\n')     
             tmp.seek(0)  
             content = smart_str(tmp.read())  
             res = HttpResponse(content, content_type='application/force-download') 
