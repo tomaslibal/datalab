@@ -21,6 +21,10 @@ def add_datapoint(request):
     entity_types = Entity.objects.all()
     return render(request, 'lab/add_datapoint.html', { 'entity_types': entity_types })
 
+def entities(request):
+    entities = Entity.objects.all()
+    return render(request, 'lab/entities.html', { 'entities': entities })
+
 def entity_image(request, datapoint_id, out_w=32, out_h=32):
     # passed in arguments from django url are always strings
     out_w = int(out_w)

@@ -1,0 +1,15 @@
+{% extends 'lab/base.html' %}
+
+{% block content %}
+
+<h2>Entities</h2>
+
+<a href="#">add entity</a>
+
+<section id="entities">
+    {% for et in entities %}
+        <div>{{ et.name }}<span><a href="/entities/{{ et.id }}">edit</a></span></div>
+    {% endfor %}
+</section>
+
+{% endblock %}
