@@ -84,10 +84,14 @@ h1 {
     font-size: 28px;
 }
 
+#entities .entity,
 #labels .label {
-    background: #ede8e3;
     margin: 5px 0px;
     padding: 10px 5px;
+}
+
+#labels .label {
+    background: #ede8e3;
 }
 
 #labels .label .usagenumWrapper {

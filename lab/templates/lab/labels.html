@@ -1,0 +1,15 @@
+{% extends 'lab/base.html' %}
+
+{% block content %}
+
+<h2>Labels</h2>
+
+<a href="#">add label</a>
+
+<section id="labels">
+    {% for label in labels %}
+        <div class="label" data-id="{{ label.id }}"><span class="w15">{{ label.name }}</span><div class="usagenumWrapper w15"><span class="usagenum">-</span>x used</div><span class="w15"><a href="/labels/{{ label.id }}/">edit</a> <a href="#">delete</a></span></div>
+    {% endfor %}
+</section>
+
+{% endblock %}
