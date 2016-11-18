@@ -1,7 +1,18 @@
 {% extends 'lab/base.html' %}
-
+{% load staticfiles %}
 {% block content %}
-<section id="settings">
-    <h2>Settings</h2>
-</section>
+<div class="mdl-cell mdl-cell--2-col">
+    <p>Select the entity</p>
+</div>
+<div class="mdl-cell mdl-cell--10-col">
+
+    <form action="/file-upload" class="dropzone">
+        <div class="fallback">
+            <input name="file" type="file" multiple />
+        </div>
+    </form>
+
+</div>
+
+<script src="{% static 'js/dropzone.js' %}"></script>
 {% endblock %}
