@@ -2,14 +2,29 @@
 
 {% block content %}
 
-<h2>Entities</h2>
+<div class="mdl-cell mdl-cell--1-col">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        Add Entity
+    </button>
+</div>
 
-<a href="#">add entity</a>
-
-<section id="entities">
-    {% for et in entities %}
-        <div class="entity"><span class="w15">{{ et.name }}</span><span class="w15"><a href="/entities/{{ et.id }}">edit</a></span></div>
+<div class="mdl-cell mdl-cell--11-col">
+    <table class="labels-table mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+      <thead>
+        <tr>
+          <th class="mdl-data-table__cell--non-numeric">Name</th>
+            <th class="mdl-data-table__cell--non-numeric">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for et in entities %}
+        <tr class="entity"><td class="mdl-data-table__cell--non-numeric">{{ et.name }}</td>
+            <td><a href="/entities/{{ et.id }}">edit</a></td></tr>
     {% endfor %}
-</section>
+
+    </tbody>
+    </table>
+
+    </div>
 
 {% endblock %}
