@@ -36,7 +36,10 @@
             <td class="mdl-data-table__cell--non-numeric">{{ dp.description|truncatechars:32 }}</td>
             <td class="mdl-data-table__cell--non-numeric">
                 {% for label in dp.labels.all %}
-                    {{ label }}
+                <span class="mdl-chip mdl-chip--deletable">
+                    <span class="mdl-chip__text">{{ label }}</span>
+                    <button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
+                </span>
                 {% endfor %}
                 <a href="#" class="add_label" data-id="{{ dp.id }}">add label</a><a href="/edit_labels/{{ dp.id }}">edit labels</a>
             </td>
