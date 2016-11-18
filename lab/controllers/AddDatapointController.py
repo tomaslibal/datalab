@@ -9,7 +9,7 @@ from io import BytesIO
 import tempfile
 
 
-from .models import Datapoint, Entity, Label
+from lab.models import Datapoint, Entity, Label
 
 def get_pixels(path, width=96, height=96):
     img = Image.open(path)
@@ -29,7 +29,7 @@ def handle_uploaded_file(f):
     return res
 
 
-class AddDatapointView(View):
+class AddDatapointController(View):
     def get(self, request):
         entity_types = Entity.objects.all()
         return render(request, 'lab/add_datapoint.html', { 'entity_types': entity_types })

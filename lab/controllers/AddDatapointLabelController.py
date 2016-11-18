@@ -1,9 +1,9 @@
 from django.views.generic import View
 from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 
-from .models import Datapoint, Label
+from lab.models import Datapoint, Label
 
-class DatapointLabelManager(View):
+class AddDatapointLabelController(View):
     def get(self, request):
         return HttpResponseRedirect('/lab/home.html')
     def post(self, request, datapoint_id):

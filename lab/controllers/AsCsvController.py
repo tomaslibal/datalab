@@ -5,9 +5,9 @@ from django.utils.encoding import smart_str
 
 import tempfile
 
-from .models import Datapoint
+from lab.models import Datapoint
 
-class CsvDownloader(View):
+class AsCsvController(View):
     def get(self, request):
         with tempfile.NamedTemporaryFile(mode='w+', suffix='.csv') as tmp:
             datapoints = Datapoint.objects.all()
@@ -15,7 +15,7 @@ class CsvDownloader(View):
                 labels = []
                 for label in dp.labels.all():
                     labels.append(label.name)
-                tmp.write(str(dp.data) + '|' + "|".join(labels) + '\n')     
+                tmp.write(str(dp.data) + ',' + ",".join(labels) + '\n')     
             tmp.seek(0)  
             content = smart_str(tmp.read())  
             res = HttpResponse(content, content_type='application/force-download') 
