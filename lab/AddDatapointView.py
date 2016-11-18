@@ -35,6 +35,7 @@ class AddDatapointView(View):
         return render(request, 'lab/add_datapoint.html', { 'entity_types': entity_types })
 
     def post(self, request, *args, **kwargs):
+        name = request.POST['name']
         desc = request.POST['desc']
         d = request.POST['data']
         et_id = request.POST['entity_type']
@@ -46,7 +47,7 @@ class AddDatapointView(View):
 
         label_names = request.POST.getlist('labels[]', [])
 
-        dp = Datapoint(entity_type=et, data=d, description=desc)
+        dp = Datapoint(entity_type=et, name=name, data=d, description=desc)
         dp.save()        
 
         for label in label_names:

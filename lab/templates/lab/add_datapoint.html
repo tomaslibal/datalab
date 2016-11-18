@@ -3,6 +3,7 @@
 {% block content %}
 <section id="add_datapoint">
    <form action="/add_datapoint/" method="POST" name="add_datapoint_form" enctype="multipart/form-data">{% csrf_token %}
+      <div>Name <input type="text" name="name"></div>
       <div>Description <input type="text" name="desc"></div>
       <div>Entity type <select name="entity_type">
       {% for et in entity_types %}
