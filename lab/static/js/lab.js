@@ -148,7 +148,7 @@ function updateActiveActionsBt(location) {
 }
 
 function startup(event) {
-    var datapointsEl = q("#datapoints");
+    var datapointsEl = q(".datapoints_table");
     var handlers = {
         "add_label": addLabelHandler
     };
