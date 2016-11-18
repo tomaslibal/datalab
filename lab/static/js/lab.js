@@ -68,9 +68,22 @@ function drawAddLabelForm(parent, id) {
         event.preventDefault();
         sendReq('/api/datapoint/' + id + '/labels/', 'POST', 'name=' + inputEl.value);
         closeAddLabelHandler(divEl);
+        var labelWrapEl = createElement('span');
+        labelWrapEl.classList.add('mdl-chip', 'mdl-chip--deletable');
+        var delBtEl = createElement('button');
+        delBtEl.classList.add('mdl-chip__action');
+        delBtEl.setAttribute('type', 'button');
+        var iEl = createElement('i');
+        iEl.classList.add('material-icons');
+        iEl.innerHTML = 'cancel';
+        delBtEl.appendChild(iEl);
         var labelEl = createElement('span');
+        labelEl.classList.add('mdl-chip__text');
         labelEl.innerHTML = inputEl.value;
-        parent.insertBefore(labelEl, parent.firstChild);
+        labelWrapEl.appendChild(labelEl);
+        labelWrapEl.appendChild(delBtEl);
+        parent.insertBefore(labelWrapEl, parent.firstChild);
+
     });
     
     divEl.appendChild(inputEl);
@@ -83,6 +96,11 @@ function closeAddLabelHandler(formEl) {
     q('.add_label', formEl.parentElement).classList.remove('open_add_label');
 
     formEl.remove();
+}
+
+function addDatapointHandler(event) {
+    event.preventDefault();
+    window.location = '/datapoint';
 }
 
 function addLabelHandler(event) {
@@ -149,14 +167,18 @@ function updateActiveActionsBt(location) {
 
 function startup(event) {
     var datapointsEl = q(".datapoints_table");
-    var handlers = {
+    var handlersDatapointsTable = {
         "add_label": addLabelHandler
     };
+    var handlersDatapointsView = {
+        "add_datapoint": addDatapointHandler
+    }
 
     //updateActiveActionsBt(location);
 
     if (datapointsEl) {
-        var datapointsClickMgr = new ClickManager(datapointsEl, "click", handlers);
+        var datapointsClickMgr = new ClickManager(datapointsEl, "click", handlersDatapointsTable);
+        var datapointsViewClickMgr = new ClickManager(document.body, "click", handlersDatapointsView);
     }
 
     /* labels page */
