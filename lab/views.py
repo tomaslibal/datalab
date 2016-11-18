@@ -20,6 +20,9 @@ def datapoints(request):
 def datasets(request):
     return render(request, 'lab/datasets.html', {})
 
+def imports(request):
+    return render(request, 'lab/import.html', {})
+
 def settings(request):
     settings = {}
     return render(request, 'lab/settings.html', { 'settings': settings })
