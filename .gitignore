@@ -90,3 +90,6 @@ ENV/
 
 # db file
 *.sqlite3
+
+# node modules
+lab/node_modules
