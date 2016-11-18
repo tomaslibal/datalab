@@ -20,6 +20,7 @@ class Label(models.Model):
 class Datapoint(models.Model):
     entity_type = models.ForeignKey(Entity, on_delete=models.CASCADE, default='')
     data = models.TextField()
+    name = models.CharField(blank=True, max_length=128)
     description = models.CharField(blank=True, max_length=256)
     active = models.BooleanField(default=True)
     labels = models.ManyToManyField(Label, blank=True)
