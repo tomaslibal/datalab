@@ -26,6 +26,6 @@ class Datapoint(models.Model):
     labels = models.ManyToManyField(Label, blank=True)
 
     def __str__(self):
-        return self.description
+        return self.name
 
 
