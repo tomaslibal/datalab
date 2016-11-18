@@ -9,7 +9,7 @@ urlpatterns = [
 
     url(r'settings/$', views.settings, name='settings'),
 
-    url(r'labels/$', views.labels, name='labels'),
+    url(r'^labels/$', views.labels, name='labels'),
     url(r'edit_labels/(?P<datapoint_id>\d{0,16})/$', views.edit_labels, name='edit_labels'), # change this url to /datapoints/#id/labels
     url(r'add_datapoint/$', AddDatapointView.as_view(), name='add_datapoint'),
     url(r'entities/$', views.entities, name='entities'),
