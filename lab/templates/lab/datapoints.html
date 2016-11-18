@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="mdl-cell mdl-cell--1-col">
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+    <button class="add_datapoint mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
         Add Datapoint
     </button>
 </div>
@@ -18,6 +18,7 @@
             <th class="mdl-data-table__cell--non-numeric">Data</th>
             <th class="mdl-data-table__cell--non-numeric">Desc.</th>
             <th class="mdl-data-table__cell--non-numeric">Labels</th>
+            <th class="mdl-data-table__cell--non-numeric">Options</th>
         </tr>
       </thead>
       <tbody>
@@ -41,8 +42,12 @@
                     <button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
                 </span>
                 {% endfor %}
-                <a href="#" class="add_label" data-id="{{ dp.id }}">add label</a><a href="/edit_labels/{{ dp.id }}">edit labels</a>
+
+                <button data-id="{{ dp.id }}" class="add_label mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+                  <i class="material-icons">add</i>
+                </button>
             </td>
+            <td class="mdl-data-table__cell--non-numeric"><a href="/datapoint/{{ dp.id }}">detail</a><a href="/datapoint/{{ dp.id }}/delete">delete</a></td>
         </tr>
     {% endfor %}
       </tbody>
