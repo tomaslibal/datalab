@@ -10,11 +10,13 @@ urlpatterns = [
 
     url(r'datapoints/$', views.datapoints, name='datapoints'),
     url(r'datasets/$', views.datasets, name='datasets'),
+    url(r'import/$', views.imports, name='import'),
     url(r'settings/$', views.settings, name='settings'),
 
     url(r'^labels/$', views.labels, name='labels'),
     url(r'edit_labels/(?P<datapoint_id>\d{0,16})/$', views.edit_labels, name='edit_labels'), # change this url to /datapoints/#id/labels
     url(r'add_datapoint/$', AddDatapointController.as_view(), name='add_datapoint'),
+    url(r'^datapoint/$', AddDatapointController.as_view(), name='add_datapoint'),
     url(r'entities/$', views.entities, name='entities'),
     url(r'entities/(?P<entity_id>\d{0,16})/$', views.entity_detail, name='entity_detail'),
 
