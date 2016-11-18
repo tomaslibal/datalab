@@ -10,7 +10,8 @@ from .models import Datapoint, Entity, Label
 
 @csrf_protect
 def home(request):
-    return render(request, 'lab/home.html', {})
+    latest_dps = Datapoint.objects.order_by('-id')[:16]
+    return render(request, 'lab/home.html', { 'latest_dps': latest_dps })
 
 def datapoints(request):
     datapoints = Datapoint.objects.all()

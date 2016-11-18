@@ -24,6 +24,7 @@ class Datapoint(models.Model):
     description = models.CharField(blank=True, max_length=256)
     active = models.BooleanField(default=True)
     labels = models.ManyToManyField(Label, blank=True)
+    added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name

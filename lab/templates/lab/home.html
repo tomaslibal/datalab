@@ -3,8 +3,31 @@
 {% block content %}
 <div class="mdl-cell mdl-cell--12-col">
     <h2>Latest datapoints</h2>
+
+    <p>See the latest 16 datapoints</p>
+
+    <div class="mdl-cell mdl-cell--12-col">
+        {% for dp in latest_dps %}
+           <span class="latest-dp">
+               <a href="/datapoint/{{ dp.id }}">
+                   {% if dp.entity_type.name == 'image' %}
+                       <img src="/api/datapoint/as_image/{{ dp.id }}">
+                   {% else %}
+                       {{ dp.data|truncatechars:16  }}
+                   {% endif %}
+               </a>
+           </span>
+        {% endfor %}
+    </div>
+
+    <div class="mdl-cell mdl-cell--12-col">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        See all
+    </button>
+    </div>
+
 </div>
-<div class="mdl-cell mdl-cell--12-col">
+<!-- <div class="mdl-cell mdl-cell--12-col">
     <h2>Search</h2>
-</div>
+</div> -->
 {% endblock %}

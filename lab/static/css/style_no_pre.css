@@ -113,6 +113,20 @@ h1 {
     padding: 0 5px;
 }
 
+.latest-dp {
+    padding: 5px 5px;
+    border: 1px solid black;
+    overflow: hidden;
+    height: 52px;
+    width: 52px;
+    display: inline-block;
+}
+
+.latest-dp a {
+    color: none;
+    display: inline-block;
+}
+
 /*
 mdl
 */
