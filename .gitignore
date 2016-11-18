@@ -93,3 +93,6 @@ ENV/
 
 # node modules
 lab/node_modules
+
+# intellij pycharm
+.idea
