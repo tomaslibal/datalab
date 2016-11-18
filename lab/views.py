@@ -16,6 +16,9 @@ def datapoints(request):
     datapoints = Datapoint.objects.all()
     return render(request, 'lab/datapoints.html', {'datapoints': datapoints})
 
+def datasets(request):
+    return render(request, 'lab/datasets.html', {})
+
 def settings(request):
     settings = {}
     return render(request, 'lab/settings.html', { 'settings': settings })
