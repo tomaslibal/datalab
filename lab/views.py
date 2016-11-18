@@ -10,8 +10,11 @@ from .models import Datapoint, Entity, Label
 
 @csrf_protect
 def home(request):
+    return render(request, 'lab/home.html', {})
+
+def datapoints(request):
     datapoints = Datapoint.objects.all()
-    return render(request, 'lab/home.html', {'datapoints': datapoints})
+    return render(request, 'lab/datapoints.html', {'datapoints': datapoints})
 
 def settings(request):
     settings = {}
