@@ -1,31 +1,61 @@
-{% load staticfiles %}
-<!doctype html>
+{% load staticfiles %}<!doctype html>
 <html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="{% static 'css/style_no_pre.css' %}">
 <title>Datalab</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+
 </head>
 <body>
-<section id="head">
-    <h1><a href="/">Datalab</a></h1>
-</section>
 
-<div class="container">
-<section id="actions">
-    <div class="action home"><a href="/">🏠<br>home</a></div>
-    <div class="action add_datapoint"><a href="/add_datapoint">➕<br>add datapoint</a></div>
-    <div class="action labels"><a href="/labels">labels</a></div>
-    <div class="action entities"><a href="/entities">entities</a></div>
-    <div class="action as_csv"><a href="/api/datapoints/as_csv/">⬇️<br>download as csv</a></div>
-    <div class="action import"><a href="#">⬆️<br>import csv</a></div>
-    <div class="action file_up"><a href="#">bulk file upload</a></div>
-    <div class="action settings"><a href="/settings">settings</a></div>
-</section>
+<!-- Uses a header that scrolls with the text, rather than staying
+  locked at the top -->
+<div class="mdl-layout mdl-js-layout">
+  <header class="mdl-layout__header mdl-layout__header--scroll">
+    <div class="mdl-layout__header-row">
+      <!-- Title -->
+      <span class="mdl-layout-title">Datalab</span>
+      <!-- Add spacer, to align navigation to the right -->
+      <div class="mdl-layout-spacer"></div>
+      <!-- Navigation -->
+      <nav class="mdl-navigation">
+        <a class="mdl-navigation__link home" href="/">Home</a>
+        <a class="mdl-navigation__link datapoitns" href="/datapoints">Datapoints</a>
+        <a class="mdl-navigation__link labels" href="/labels">Labels</a>
+        <a class="mdl-navigation__link entities" href="/entities">Entities</a>
+        <a class="mdl-navigation__link datasets" href="/datasets">Datasets</a>
+        <a class="mdl-navigation__link import" href="/import">Import</a>
+        <a class="mdl-navigation__link settings" href="/settings">Settings</a>
+      </nav>
+    </div>
+  </header>
+  <div class="mdl-layout__drawer">
+    <span class="mdl-layout-title">Datalab</span>
+    <nav class="mdl-navigation">
+        <a class="mdl-navigation__link home" href="/">Home</a>
+        <a class="mdl-navigation__link datapoitns" href="/datapoints">Datapoints</a>
+        <a class="mdl-navigation__link labels" href="/labels">Labels</a>
+        <a class="mdl-navigation__link entities" href="/entities">Entities</a>
+        <a class="mdl-navigation__link datasets" href="/datasets">Datasets</a>
+        <a class="mdl-navigation__link import" href="/import">Import</a>
+        <a class="mdl-navigation__link settings" href="/settings">Settings</a>
+    </nav>
+  </div>
+  <main class="mdl-layout__content">
+    <div class="page-content">
 
-{% block content %}
-{% endblock %}
-</div><!--/.container-->
+        <div class="mdl-grid">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
+  </main>
+</div>
+
 
 <script src="{% static 'js/lab.js' %}"></script>

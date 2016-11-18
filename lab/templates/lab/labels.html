@@ -2,14 +2,31 @@
 
 {% block content %}
 
-<h2>Labels</h2>
+<div class="mdl-cell mdl-cell--1-col">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+        Add Label
+    </button>
+</div>
 
-<a href="#">add label</a>
-
-<section id="labels">
-    {% for label in labels %}
-        <div class="label" data-id="{{ label.id }}"><span class="w15">{{ label.name }}</span><div class="usagenumWrapper w15"><span class="usagenum">-</span>x used</div><span class="w15"><a href="/labels/{{ label.id }}/">edit</a> <a href="#">delete</a></span></div>
-    {% endfor %}
-</section>
+<div class="mdl-cell mdl-cell--11-col">
+    <table class="labels-table mdl-data-table mdl-js-data-table mdl-data-table--selectable mdl-shadow--2dp">
+      <thead>
+        <tr>
+          <th class="mdl-data-table__cell--non-numeric">Name</th>
+            <th class="">Used</th>
+            <th class="mdl-data-table__cell--non-numeric">Options</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for label in labels %}
+            <tr class="label" data-id="{{ label.id }}">
+                <td class="mdl-data-table__cell--non-numeric">{{ label.name }}</td>
+                <td class="usagenumWrapper"><span class="usagenum">-</span>x used</td>
+                <td class="mdl-data-table__cell--non-numeric"><a href="/labels/{{ label.id }}/">edit</a> <a href="#">delete</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>
 
 {% endblock %}

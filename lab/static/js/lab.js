@@ -153,14 +153,14 @@ function startup(event) {
         "add_label": addLabelHandler
     };
 
-    updateActiveActionsBt(location);
+    //updateActiveActionsBt(location);
 
     if (datapointsEl) {
         var datapointsClickMgr = new ClickManager(datapointsEl, "click", handlers);
     }
 
     /* labels page */
-    var labelsTable = q('#labels');
+    var labelsTable = q('.labels-table');
     if (labelsTable) {
         var labelsMgr = new LabelsMgr(labelsTable);
     }
