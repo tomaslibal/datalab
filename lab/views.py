@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_protect
 
 from PIL import Image
@@ -21,6 +21,11 @@ def datapoint_details(request, datapoint_id):
     entity_types = Entity.objects.all()
     datapoint = Datapoint.objects.get(id=datapoint_id)
     return render(request, 'lab/detail_datapoint.html', { 'datapoint': datapoint, 'entity_types': entity_types })
+
+def delete_dp_label(request, datapoint_id, label_id):
+    label = Label.objects.get(id=label_id)
+    Datapoint.objects.get(id=datapoint_id).labels.remove(label)
+    return HttpResponse('OK')
 
 def datasets(request):
     return render(request, 'lab/datasets.html', {})

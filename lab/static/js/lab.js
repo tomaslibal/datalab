@@ -175,12 +175,19 @@ function detailDatapointHandler(event){
     window.location = '/datapoint/' + id;
 }
 
+function datapointLabelDeleteHandler(event) {
+    var dpid = event.target.dataset.dpid;
+    var label_id = event.target.dataset.id;
+    sendReq('/api/datapoint/' + dpid + '/label/' + label_id + '/delete', 'GET');
+}
+
 function startup(event) {
     var datapointsEl = q(".datapoints_table");
     var handlersDatapointsTable = {
         "add_label": addLabelHandler,
         "dp_delete": deleteDatapointHandler,
-        "dp_detail": detailDatapointHandler
+        "dp_detail": detailDatapointHandler,
+        "dp_label_delete": datapointLabelDeleteHandler
     };
     var handlersDatapointsView = {
         "add_datapoint": addDatapointHandler

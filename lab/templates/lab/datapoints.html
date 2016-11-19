@@ -39,7 +39,7 @@
                 {% for label in dp.labels.all %}
                 <span class="mdl-chip mdl-chip--deletable">
                     <span class="mdl-chip__text">{{ label }}</span>
-                    <button type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
+                    <button data-dpid="{{ dp.id }}" data-id="{{ label.id }}" type="button" class="dp_label_delete mdl-chip__action"><i class="material-icons">cancel</i></button>
                 </span>
                 {% endfor %}
 
