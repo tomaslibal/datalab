@@ -47,7 +47,14 @@
                   <i class="material-icons">add</i>
                 </button>
             </td>
-            <td class="mdl-data-table__cell--non-numeric"><a href="/datapoint/{{ dp.id }}">detail</a><a href="/datapoint/{{ dp.id }}/delete">delete</a></td>
+            <td class="mdl-data-table__cell--non-numeric">
+                <button data-id="{{ dp.id }}" class="dp_detail mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                  <i class="material-icons">info</i>
+                </button>
+                <button data-id="{{ dp.id }}" class="dp_delete mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                  <i class="material-icons">delete</i>
+                </button>
+            </td>
         </tr>
     {% endfor %}
       </tbody>

@@ -165,10 +165,22 @@ function updateActiveActionsBt(location) {
     }
 }
 
+function deleteDatapointHandler(event) {
+    var id = event.target.dataset.id;
+    window.location = '/datapoint/' + id + '/delete';
+}
+
+function detailDatapointHandler(event){
+    var id = event.target.dataset.id;
+    window.location = '/datapoint/' + id;
+}
+
 function startup(event) {
     var datapointsEl = q(".datapoints_table");
     var handlersDatapointsTable = {
-        "add_label": addLabelHandler
+        "add_label": addLabelHandler,
+        "dp_delete": deleteDatapointHandler,
+        "dp_detail": detailDatapointHandler
     };
     var handlersDatapointsView = {
         "add_datapoint": addDatapointHandler
