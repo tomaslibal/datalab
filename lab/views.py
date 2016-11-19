@@ -17,6 +17,11 @@ def datapoints(request):
     datapoints = Datapoint.objects.all()
     return render(request, 'lab/datapoints.html', {'datapoints': datapoints})
 
+def datapoint_details(request, datapoint_id):
+    entity_types = Entity.objects.all()
+    datapoint = Datapoint.objects.get(id=datapoint_id)
+    return render(request, 'lab/detail_datapoint.html', { 'datapoint': datapoint, 'entity_types': entity_types })
+
 def datasets(request):
     return render(request, 'lab/datasets.html', {})
 

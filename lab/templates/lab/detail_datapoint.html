@@ -2,7 +2,69 @@
 
 {% block content %}
 
-<h2>{{ datapoint.name }}</h2>
-<h3>Datapoint Details</h3>
+<div class="mdl-cell mdl-cell--6-col">
+    <h2>Datapoint details</h2>
+
+    <form action="/api/datapoint/{{ datapoint.id }}" method="POST" name="update_datapoint_form" enctype="multipart/form-data">{% csrf_token %}
+      <div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="name" name="name" value="{{ datapoint.name }}">
+            <label class="mdl-textfield__label" for="name">Name...</label>
+          </div>
+      </div>
+      <div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="desc" name="desc" value="{{ datapoint.desc }}">
+            <label class="mdl-textfield__label" for="desc">Description...</label>
+          </div>
+      </div>
+
+      <div>Entity type <select name="entity_type">
+      {% for et in entity_types %}
+          <option value="{{ et.id }}"{% if et.id == datapoint.entity.id %} selected="selected"{% endif %}>{{ et.name }}</select>
+      {% endfor %}
+      </select></div>
+
+        <!--
+        <li class="mdl-list__item">
+    <span class="mdl-list__item-primary-content">
+      <i class="material-icons  mdl-list__item-avatar">person</i>
+      Bob Odenkirk
+    </span>
+      <span class="mdl-list__item-secondary-action">
+        <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="list-switch-1">
+          <input type="checkbox" id="list-switch-1" class="mdl-switch__input" checked />
+        </label>
+    </span>
+  </li> -->
+
+      <div>
+          <div class="mdl-textfield mdl-js-textfield">
+            <textarea class="mdl-textfield__input" type="text" rows= "3" id="data" name="data" ></textarea>
+            <label class="mdl-textfield__label" for="data">Data...</label>
+          </div>
+      </div>
+
+      <div>Or upload a file <input type="file" name="image"></div>
+
+        <hr>
+
+      <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+          Save
+      </button>
+   </form>
+
+</div>
+
+<div class="mdl-cell mdl-cell--4-col">
+    <h2>Labels</h2>
+
+    {% for label in datapoint.labels.all %}
+        <span class="mdl-chip mdl-chip--deletable">
+            <span class="mdl-chip__text">{{ label.name }}</span>
+            <button data-dpid="{{ datapoint.id }}" data-id="{{ label.id }}" type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
+        </span>
+    {% endfor %}
+</div>
 
 {% endblock %}
