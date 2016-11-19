@@ -58,6 +58,4 @@ class AddDatapointController(View):
                 dp.labels.add(obj)
 
         dp.save()
-        datapoints = Datapoint.objects.all()
         return HttpResponseRedirect('/', { 'msg_ok': 'datapoint_added' })
-        # return render(request, 'lab/home.html', {'datapoints': datapoints, 'msg_ok': 'datapoint_added' })
