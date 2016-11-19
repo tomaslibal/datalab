@@ -51,10 +51,11 @@ class AddDatapointController(View):
         dp.save()        
 
         for label in label_names:
-            obj, created = Label.objects.get_or_create(
-                name=label
-            )
-            dp.labels.add(obj)
+            if len(label) > 0:
+                obj, created = Label.objects.get_or_create(
+                    name=label
+                )
+                dp.labels.add(obj)
 
         dp.save()
         datapoints = Datapoint.objects.all()
