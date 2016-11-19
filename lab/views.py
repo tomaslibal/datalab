@@ -8,7 +8,6 @@ from math import sqrt
 
 from .models import Datapoint, Entity, Label
 
-@csrf_protect
 def home(request):
     latest_dps = Datapoint.objects.order_by('-id')[:16]
     return render(request, 'lab/home.html', { 'latest_dps': latest_dps })
@@ -30,8 +29,10 @@ def delete_dp_label(request, datapoint_id, label_id):
 def datasets(request):
     return render(request, 'lab/datasets.html', {})
 
+@csrf_protect
 def imports(request):
-    return render(request, 'lab/import.html', {})
+    entity_types = Entity.objects.all()
+    return render(request, 'lab/import.html', { 'entity_types': entity_types })
 
 def settings(request):
     settings = {}

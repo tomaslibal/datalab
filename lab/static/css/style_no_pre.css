@@ -158,6 +158,18 @@ mdl
   color: #fff;
 }
 
+.demo-list-control {
+  width: 300px;
+}
+
+.demo-list-item {
+  width: 200px;
+}
+
+.demo-list-radio {
+  display: inline;
+}
+
 .mdl-data-table {
 width: 100%;
 }

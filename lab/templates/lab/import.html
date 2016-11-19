@@ -3,14 +3,32 @@
 {% block content %}
 <div class="mdl-cell mdl-cell--2-col">
     <p>Select the entity</p>
+
+    <ul class="demo-list-item mdl-list">
+        {% for entity in entity_types %}
+        <li class="mdl-list__item">
+            <span class="mdl-list__item-primary-content">
+              <span>{{ entity.name }}</span>
+            </span>
+            <span class="mdl-list__item-secondary-action">
+                <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="entity_{{ entity.id }}">
+                  <input type="radio" id="entity_{{ entity.id }}" class="mdl-radio__button" name="entity_id" value="{{ entity.id }}" />
+                </label>
+            </span>
+         </li>
+        {% endfor %}
+    </ul>
 </div>
 <div class="mdl-cell mdl-cell--10-col">
 
-    <form action="/file-upload" class="dropzone">
+    <form action="/file-upload/" class="dropzone" enctype="multipart/form-data">{% csrf_token %}
+        <input type="hidden" name="entity_id" value="{{ entity_types.0.id }}"/>
         <div class="fallback">
             <input name="file" type="file" multiple />
         </div>
     </form>
+
+    <button>Upload</button>
 
 </div>
 
