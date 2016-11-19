@@ -161,3 +161,9 @@ mdl
 .mdl-data-table {
 width: 100%;
 }
+
+body .mdl-button--fab.mdl-button--mini-fab {
+    width: 32px;
+    min-width: 32px;
+    height: 32px;
+}
