@@ -7,17 +7,18 @@
     <p>See the latest 16 datapoints</p>
 
     <div class="mdl-cell mdl-cell--12-col">
+        <div id="latest-dp">
         {% for dp in latest_dps %}
-           <span class="latest-dp">
-               <a href="/datapoint/{{ dp.id }}">
-                   {% if dp.entity_type.name == 'image' %}
-                       <img src="/api/datapoint/as_image/{{ dp.id }}">
-                   {% else %}
-                       {{ dp.data|truncatechars:16  }}
-                   {% endif %}
-               </a>
-           </span>
+          <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image:url('/api/datapoint/as_image/{{ dp.id }}')">
+              <div class="mdl-card__title mdl-card--expand"></div>
+              <div class="mdl-card__actions">
+                <span class="demo-card-image__filename"><a href="/datapoint/{{ dp.id }}">{{ dp.name }}</a></span>
+              </div>
+          </div>
+
+
         {% endfor %}
+        </div>
     </div>
 
     <div class="mdl-cell mdl-cell--12-col">

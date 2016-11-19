@@ -190,3 +190,27 @@ body .mdl-button--fab.mdl-button--mini-fab {
     text-align: center;
     padding-top: 100px;
 }
+
+/* home page cards -- latest datapoints if image entity */
+#latest-dp {
+    width: 100%;
+    overflow: hidden;
+}
+.demo-card-image.mdl-card {
+  width: 128px;
+  height: 128px;
+  background: none center / cover;
+  min-height: 128px;
+  float: left;
+  margin: 5px 5px;
+}
+.demo-card-image > .mdl-card__actions {
+  height: 52px;
+  padding: 16px;
+  background: rgba(0, 0, 0, 0.2);
+}
+.demo-card-image__filename {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
