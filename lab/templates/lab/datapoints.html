@@ -23,7 +23,7 @@
       </thead>
       <tbody>
       {% for dp in datapoints %}
-        <tr>
+        <tr id="dp{{ dp.id}}">
             <td>{{ dp.id }}</td>
             <td class="mdl-data-table__cell--non-numeric">{{ dp.entity_type }}</td>
             <td class="mdl-data-table__cell--non-numeric">{{ dp.name }}</td>
@@ -37,7 +37,7 @@
             <td class="mdl-data-table__cell--non-numeric">{{ dp.description|truncatechars:32 }}</td>
             <td class="mdl-data-table__cell--non-numeric">
                 {% for label in dp.labels.all %}
-                <span class="mdl-chip mdl-chip--deletable">
+                <span id="ll_{{ dp.id }}_{{ label.id }}" class="mdl-chip mdl-chip--deletable">
                     <span class="mdl-chip__text">{{ label }}</span>
                     <button data-dpid="{{ dp.id }}" data-id="{{ label.id }}" type="button" class="dp_label_delete mdl-chip__action"><i class="material-icons">cancel</i></button>
                 </span>

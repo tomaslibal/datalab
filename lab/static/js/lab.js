@@ -178,7 +178,14 @@ function detailDatapointHandler(event){
 function datapointLabelDeleteHandler(event) {
     var dpid = event.target.dataset.dpid;
     var label_id = event.target.dataset.id;
-    sendReq('/api/datapoint/' + dpid + '/label/' + label_id + '/delete', 'GET');
+    function callback() {
+        res = this.responseText;
+        if (res === 'OK') {
+            var label = q('#ll_' + dpid + '_' + label_id);
+            label.remove();
+        }
+    }
+    sendReq('/api/datapoint/' + dpid + '/label/' + label_id + '/delete', 'GET', undefined, callback);
 }
 
 function startup(event) {
