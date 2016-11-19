@@ -3,7 +3,7 @@
 {% block content %}
 
 <div class="mdl-cell mdl-cell--6-col">
-    <h2>Datapoint details</h2>
+    <h2 id="datapoint-details">Datapoint details</h2>
 
     <form action="/api/datapoint/{{ datapoint.id }}" method="POST" name="update_datapoint_form" enctype="multipart/form-data">{% csrf_token %}
       <div>
@@ -59,12 +59,23 @@
 <div class="mdl-cell mdl-cell--4-col">
     <h2>Labels</h2>
 
+    <div id="labels">
     {% for label in datapoint.labels.all %}
-        <span class="mdl-chip mdl-chip--deletable">
+        <span id="ll_{{ datapoint.id }}_{{ label.id }}" class="mdl-chip mdl-chip--deletable">
             <span class="mdl-chip__text">{{ label.name }}</span>
-            <button data-dpid="{{ datapoint.id }}" data-id="{{ label.id }}" type="button" class="mdl-chip__action"><i class="material-icons">cancel</i></button>
+            <button data-dpid="{{ datapoint.id }}" data-id="{{ label.id }}" type="button" class="dp_label_delete mdl-chip__action"><i class="material-icons">cancel</i></button>
         </span>
     {% endfor %}
+    </div>
+
+    <hr>
+    
+    <div>
+        <button data-id="{{ datapoint.id }}" class="add_label mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+          <i class="material-icons">add</i>
+        </button>
+    </div>
+
 </div>
 
 {% endblock %}

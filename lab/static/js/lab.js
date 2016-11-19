@@ -198,6 +198,11 @@ function startup(event) {
     };
     var handlersDatapointsView = {
         "add_datapoint": addDatapointHandler
+    };
+
+    var handlersDPDetail = {
+        'add_label': addLabelHandler,
+        "dp_label_delete": datapointLabelDeleteHandler
     }
 
     //updateActiveActionsBt(location);
@@ -211,6 +216,12 @@ function startup(event) {
     var labelsTable = q('.labels-table');
     if (labelsTable) {
         var labelsMgr = new LabelsMgr(labelsTable);
+    }
+
+    /* datapoint details page */
+    var dpDetails = q('#datapoint-details');
+    if (dpDetails) {
+        var clickMgr = new ClickManager(q('.mdl-cell.mdl-cell--4-col'), 'click', handlersDPDetail);
     }
 }
 
