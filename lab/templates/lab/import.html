@@ -1,6 +1,7 @@
 {% extends 'lab/base.html' %}
 {% load staticfiles %}
 {% block content %}
+
 <div class="mdl-cell mdl-cell--2-col">
     <p>Select the entity</p>
 
@@ -19,16 +20,21 @@
         {% endfor %}
     </ul>
 </div>
-<div class="mdl-cell mdl-cell--10-col">
+<div class="mdl-cell mdl-cell--2-col click-capture-labels">
+    <p>Add labels</p>
 
-    <form action="/file-upload/" class="dropzone" enctype="multipart/form-data">{% csrf_token %}
+    <button class="add_label_import add_label mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored">
+      <i class="material-icons">add</i>
+    </button>
+</div>
+<div class="mdl-cell mdl-cell--8-col">
+
+    <form action="/file-upload/" class="dropzone import-drop-zone" enctype="multipart/form-data">{% csrf_token %}
         <input type="hidden" name="entity_id" value="{{ entity_types.0.id }}"/>
         <div class="fallback">
             <input name="file" type="file" multiple />
         </div>
     </form>
-
-    <button>Upload</button>
 
 </div>
 

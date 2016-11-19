@@ -57,34 +57,15 @@ function createElement(elType, customFactory) {
     return creator.createElement(elType);
 }
 
-function drawAddLabelForm(parent, id) {
+function drawAddLabelForm(parent, callback) {
     var divEl = createElement('div');
     divEl.classList.add('add_label_form');
     var inputEl = createElement('input');
     inputEl.type = 'text';
+    inputEl.id = 'add_label_input';
     var buttonEl = createElement('button');
     buttonEl.innerHTML = 'add';
-    buttonEl.addEventListener('click', function(event) {
-        event.preventDefault();
-        sendReq('/api/datapoint/' + id + '/labels/', 'POST', 'name=' + inputEl.value);
-        closeAddLabelHandler(divEl);
-        var labelWrapEl = createElement('span');
-        labelWrapEl.classList.add('mdl-chip', 'mdl-chip--deletable');
-        var delBtEl = createElement('button');
-        delBtEl.classList.add('mdl-chip__action');
-        delBtEl.setAttribute('type', 'button');
-        var iEl = createElement('i');
-        iEl.classList.add('material-icons');
-        iEl.innerHTML = 'cancel';
-        delBtEl.appendChild(iEl);
-        var labelEl = createElement('span');
-        labelEl.classList.add('mdl-chip__text');
-        labelEl.innerHTML = inputEl.value;
-        labelWrapEl.appendChild(labelEl);
-        labelWrapEl.appendChild(delBtEl);
-        parent.insertBefore(labelWrapEl, parent.firstChild);
-
-    });
+    buttonEl.addEventListener('click', callback);
     
     divEl.appendChild(inputEl);
     divEl.appendChild(buttonEl);
@@ -103,6 +84,52 @@ function addDatapointHandler(event) {
     window.location = '/datapoint';
 }
 
+function addLabelImportHandler(event) {
+    event.preventDefault();
+
+    var target = event.target;
+
+    if (target.classList.contains('open_add_label')) {
+        closeAddLabelHandler(q('.add_label_form', target.parentElement));
+        return;
+    }
+
+    event.target.classList.add('open_add_label');
+
+    var parent = event.target.parentElement;
+
+    function callback(event) {
+        event.preventDefault();
+        var inputEl = q('#add_label_input');
+        var dropzoneEl = q('.dropzone');
+        var inputWithLabel = createElement('input');
+        inputWithLabel.type = 'hidden';
+        inputWithLabel.name = 'labels[]';
+        inputWithLabel.value = inputEl.value;
+        dropzoneEl.appendChild(inputWithLabel);
+
+        closeAddLabelHandler(q('.add_label_form'));
+
+        var labelWrapEl = createElement('span');
+        labelWrapEl.classList.add('mdl-chip', 'mdl-chip--deletable');
+        var delBtEl = createElement('button');
+        delBtEl.classList.add('mdl-chip__action');
+        delBtEl.setAttribute('type', 'button');
+        var iEl = createElement('i');
+        iEl.classList.add('material-icons');
+        iEl.innerHTML = 'cancel';
+        delBtEl.appendChild(iEl);
+        var labelEl = createElement('span');
+        labelEl.classList.add('mdl-chip__text');
+        labelEl.innerHTML = inputEl.value;
+        labelWrapEl.appendChild(labelEl);
+        labelWrapEl.appendChild(delBtEl);
+        parent.insertBefore(labelWrapEl, parent.firstChild);
+    }
+
+    drawAddLabelForm(event.target.parentElement, callback);
+}
+
 function addLabelHandler(event) {
     event.preventDefault();
 
@@ -117,8 +144,32 @@ function addLabelHandler(event) {
     var id = event.target.dataset.id;
 
     event.target.classList.add('open_add_label');
+
+    var parent = event.target.parentElement;
+
+    function callback(event) {
+        event.preventDefault();
+        var inputEl = q('#add_label_input');
+        sendReq('/api/datapoint/' + id + '/labels/', 'POST', 'name=' + inputEl.value);
+        closeAddLabelHandler(q('.add_label_form'));
+        var labelWrapEl = createElement('span');
+        labelWrapEl.classList.add('mdl-chip', 'mdl-chip--deletable');
+        var delBtEl = createElement('button');
+        delBtEl.classList.add('mdl-chip__action');
+        delBtEl.setAttribute('type', 'button');
+        var iEl = createElement('i');
+        iEl.classList.add('material-icons');
+        iEl.innerHTML = 'cancel';
+        delBtEl.appendChild(iEl);
+        var labelEl = createElement('span');
+        labelEl.classList.add('mdl-chip__text');
+        labelEl.innerHTML = inputEl.value;
+        labelWrapEl.appendChild(labelEl);
+        labelWrapEl.appendChild(delBtEl);
+        parent.insertBefore(labelWrapEl, parent.firstChild);
+    }
     
-    drawAddLabelForm(event.target.parentElement, id);
+    drawAddLabelForm(event.target.parentElement, callback);
 }
 
 function updateUsageNum(label_id, spanEl) {
@@ -203,7 +254,11 @@ function startup(event) {
     var handlersDPDetail = {
         'add_label': addLabelHandler,
         "dp_label_delete": datapointLabelDeleteHandler
-    }
+    };
+
+    var handlersImportView = {
+        'add_label_import': addLabelImportHandler
+    };
 
     //updateActiveActionsBt(location);
 
@@ -222,6 +277,12 @@ function startup(event) {
     var dpDetails = q('#datapoint-details');
     if (dpDetails) {
         var clickMgr = new ClickManager(q('.mdl-cell.mdl-cell--4-col'), 'click', handlersDPDetail);
+    }
+
+    /* import page */
+    var importZone = q('.import-drop-zone');
+    if (importZone) {
+        var clickMgr = new ClickManager(q('.click-capture-labels'), 'click', handlersImportView);
     }
 }
 
