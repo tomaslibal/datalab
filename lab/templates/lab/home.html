@@ -9,7 +9,7 @@
     <div class="mdl-cell mdl-cell--12-col">
         <div id="latest-dp">
         {% for dp in latest_dps %}
-          <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image:url('/api/datapoint/as_image/{{ dp.id }}')">
+          <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image:url('/api/datapoint/as_image/{{ dp.id }}/96/96')">
               <div class="mdl-card__title mdl-card--expand"></div>
               <div class="mdl-card__actions">
                 <span class="demo-card-image__filename"><a href="/datapoint/{{ dp.id }}">{{ dp.name }}</a></span>
