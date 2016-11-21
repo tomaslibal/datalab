@@ -13,5 +13,5 @@ This is a Django project
 
 ### Requirements and dependencies
 
-- Python 2.7+
+- Python 3.5.2+
 - pip packages (see `requirements.txt`)
