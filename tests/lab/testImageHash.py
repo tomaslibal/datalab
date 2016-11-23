@@ -3,6 +3,8 @@ from PIL import Image
 
 from lab.util.ImageHash import ImageHash
 
+import distance
+
 def get_r_pixels(path = 'tests/resources/test_panda.jpg'):
     w = 96
     h = 96
@@ -28,6 +30,11 @@ class SimpleTest(TestCase):
     def test_hash_returns_non_empty_string(self):
         hash = self.hasher.hash(self.pixels)
         self.assertEqual(True, len(hash) > 0)
+
+    def test_two_same_images_return_same_hash(self):
+        hash = self.hasher.hash(get_r_pixels('tests/resources/test_cloud.jpg'))
+        hash2 = self.hasher.hash(get_r_pixels('tests/resources/test_cloud.jpg'))
+        self.assertEqual(hash, hash2)
 
     def test_two_different_inputs_return_different_hashes(self):
         hash = self.hasher.hash(get_r_pixels('tests/resources/test_cloud.jpg'))
