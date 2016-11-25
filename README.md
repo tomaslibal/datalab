@@ -34,3 +34,5 @@ Datalab is a label manager for data (different entities are supported)
 with the export function of the data. The initial motivation for this 
 project was the need to keep labelled training data organized for 
 generating the input to train models in machine learning.
+
+This is not the end.
