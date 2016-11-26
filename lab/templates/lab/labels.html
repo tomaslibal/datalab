@@ -22,7 +22,17 @@
             <tr class="label" data-id="{{ label.id }}">
                 <td class="mdl-data-table__cell--non-numeric">{{ label.name }}</td>
                 <td class="usagenumWrapper"><span class="usagenum">-</span>x used</td>
-                <td class="mdl-data-table__cell--non-numeric"><a href="/labels/{{ label.id }}/">edit</a> <a href="#">delete</a></td>
+                <td class="mdl-data-table__cell--non-numeric">
+                    <button data-id="{{ label.id }}" class="label_detail mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                        <i class="material-icons">info</i>
+                    </button>
+                    <button data-id="{{ label.id }}" class="label_detail mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                        <i class="material-icons">edit</i>
+                    </button>
+                    <button data-id="{{ label.id }}" class="label_detail mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab">
+                        <i class="material-icons">delete</i>
+                    </button>
+                </td>
             </tr>
         {% endfor %}
     </tbody>
