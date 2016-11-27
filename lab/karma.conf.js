@@ -2,10 +2,10 @@
 module.exports = function(config) {
   config.set({
     basePath: '.',
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'requirejs'],
 
     files: [
-      "static/js/src/**/*.js",
+      "static/js/build/*.js",
       "static/js/test/**/*.js"
     ],
 

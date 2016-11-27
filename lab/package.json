@@ -6,8 +6,8 @@
   "main": "lab.js",
   "scripts": {
     "build": "node ./node_modules/babel-cli/bin/babel.js static/js/src -d static/js/lib",
-    "webpack": "node ./node_modules/webpack/bin/webpack.js static/js/lib/main.js --output-filename=static/js/build/bundle.js",
-    "test": "./node_modules/karma/bin/karma start"
+    "webpack": "npm run build && node ./node_modules/webpack/bin/webpack.js static/js/lib/main.js --output-filename=static/js/build/bundle.js",
+    "test": "npm run webpack && ./node_modules/karma/bin/karma start"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +22,9 @@
     "karma-chrome-launcher": "^2.0.0",
     "karma-firefox-launcher": "^1.0.0",
     "karma-jasmine": "^1.0.2",
+    "karma-requirejs": "^1.1.0",
+    "karma-webpack": "^1.8.0",
+    "requirejs": "^2.3.2",
     "webpack": "^1.13.3"
   }
 }
