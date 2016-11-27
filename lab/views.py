@@ -7,6 +7,7 @@ from PIL import Image
 from math import sqrt
 
 from .models import Datapoint, Entity, Label
+from .util.ImageHash import ImageHash
 
 def home(request):
     latest_dps = Datapoint.objects.order_by('-id')[:16]
@@ -19,7 +20,17 @@ def datapoints(request):
 def datapoint_details(request, datapoint_id):
     entity_types = Entity.objects.all()
     datapoint = Datapoint.objects.get(id=datapoint_id)
-    return render(request, 'lab/detail_datapoint.html', { 'datapoint': datapoint, 'entity_types': entity_types })
+    h = ImageHash()
+
+    pixels = datapoint.data.split(',')
+    num_pixels = len(pixels)
+    w = int(sqrt(num_pixels))
+
+    pixels_r = [[pixels[i*j] for i in range(w)] for j in range(w)]
+
+    hashval = h.hash(pixels_r)
+
+    return render(request, 'lab/detail_datapoint.html', { 'datapoint': datapoint, 'entity_types': entity_types, 'hashval': hashval })
 
 def delete_dp_label(request, datapoint_id, label_id):
     label = Label.objects.get(id=label_id)
@@ -57,6 +68,10 @@ def entity_detail(request, entity_id):
 def labels(request):
     labels = Label.objects.all()
     return render(request, 'lab/labels.html', { 'labels': labels })
+
+def label_details(request, label_id):
+    label = Label.objects.get(id=label_id)
+    return render(request, 'lab/detail_label.html', { 'label': label })
 
 """
 returns how many datapoints use the given label
