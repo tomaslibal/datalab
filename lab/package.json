@@ -5,7 +5,8 @@
   "description": "js to enhance the lab ui",
   "main": "lab.js",
   "scripts": {
-    "build": "babel static/js -d static/lib",
+    "build": "babel static/js/src -d static/js/lib",
+    "webpack": "node ./node_modules/webpack/bin/webpack.js static/js/lib/main.js --output-filename=static/js/build/bundle.js",
     "test": "./node_modules/karma/bin/karma start"
   },
   "author": "",
