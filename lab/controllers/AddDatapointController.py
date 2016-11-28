@@ -13,7 +13,7 @@ from lab.models import Datapoint, Entity, Label
 
 def get_pixels(path, width=96, height=96):
     img = Image.open(path)
-    img.thumbnail((width, height), Image.ANTIALIAS)
+    img.resize((width, height), resample=Image.BILINEAR)
     p = list(img.getdata())
     #pixels_str = ','.join(str(px[0]) + ',' + str(px[1]) + ',' + str(px[2]) for px in p)
     pixels_str = ','.join(str(px[0]) for px in p)
