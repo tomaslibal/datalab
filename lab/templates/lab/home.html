@@ -15,7 +15,7 @@
                  style="background-image:url('/api/datapoint/as_image/{{ dp.id }}/96/96')">
             {% else %}
                 <div class="demo-card-image mdl-card mdl-shadow--2dp">
-                    <span>{{ dp.data|truncatechars:32  }}</span>
+                    <span style="word-wrap:break-word;">{{ dp.data|truncatechars:32  }}</span>
             {% endif %}
                     <div class="mdl-card__title mdl-card--expand"></div>
                     <div class="mdl-card__actions">
