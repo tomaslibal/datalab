@@ -28,7 +28,7 @@
             <td class="mdl-data-table__cell--non-numeric">{{ dp.entity_type }}</td>
             <td class="mdl-data-table__cell--non-numeric">{{ dp.name }}</td>
             <td class="mdl-data-table__cell--non-numeric">
-               {% if dp.entity_type.name == 'image' %}
+               {% if dp.entity_type.entity_type == 'img' %}
                    <img src="/api/datapoint/as_image/{{ dp.id }}">
                {% else %}
                    {{ dp.data|truncatechars:32  }}

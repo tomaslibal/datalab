@@ -5,6 +5,13 @@
 <div class="mdl-cell mdl-cell--6-col">
     <h2 id="datapoint-details">Datapoint details</h2>
 
+    <div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="hash" name="name" value="{{ hashval }}" disabled>
+            <label class="mdl-textfield__label" for="hash">Hash...</label>
+          </div>
+    </div>
+
     <form action="/api/datapoint/{{ datapoint.id }}" method="POST" name="update_datapoint_form" enctype="multipart/form-data">{% csrf_token %}
       <div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
