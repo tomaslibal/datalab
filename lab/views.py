@@ -6,7 +6,7 @@ from PIL import Image
 
 from math import sqrt
 
-from .models import Datapoint, Entity, Label
+from .models import Datapoint, UserDefinedEntity, Label
 from .util.ImageHash import ImageHash
 
 def home(request):
@@ -18,7 +18,7 @@ def datapoints(request):
     return render(request, 'lab/datapoints.html', {'datapoints': datapoints})
 
 def datapoint_details(request, datapoint_id):
-    entity_types = Entity.objects.all()
+    entity_types = UserDefinedEntity.objects.all()
     datapoint = Datapoint.objects.get(id=datapoint_id)
     h = ImageHash()
 
@@ -42,7 +42,7 @@ def datasets(request):
 
 @csrf_protect
 def imports(request):
-    entity_types = Entity.objects.all()
+    entity_types = UserDefinedEntity.objects.all()
     return render(request, 'lab/import.html', { 'entity_types': entity_types })
 
 def settings(request):
@@ -54,15 +54,15 @@ def edit_labels(request, datapoint_id):
     return render(request, 'lab/edit_labels.html', {'datapoint': datapoint})
 
 def add_datapoint(request):
-    entity_types = Entity.objects.all()
+    entity_types = UserDefinedEntity.objects.all()
     return render(request, 'lab/add_datapoint.html', { 'entity_types': entity_types })
 
 def entities(request):
-    entities = Entity.objects.all()
+    entities = UserDefinedEntity.objects.all()
     return render(request, 'lab/entities.html', { 'entities': entities })
 
 def entity_detail(request, entity_id):
-    entity = Entity.objects.get(id=entity_id)
+    entity = UserDefinedEntity.objects.get(id=entity_id)
     return render(request, 'lab/detail_entity.html', { 'entity': entity })
 
 def labels(request):

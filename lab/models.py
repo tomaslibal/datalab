@@ -1,10 +1,17 @@
 from django.db import models
 
+from .lib.AvailableEntities import AVAILABLE_ENTITIES
+
 # Create your models here.
 
-class Entity(models.Model):
+class UserDefinedEntity(models.Model):
     name = models.CharField(max_length=128)
     description = models.CharField(blank=True, max_length=256)
+    entity_type = models.CharField(
+        max_length=64,
+        choices=AVAILABLE_ENTITIES,
+        default="img"
+    )
 
     def __str__(self):
         return self.name
@@ -18,7 +25,7 @@ class Label(models.Model):
         return self.name
 
 class Datapoint(models.Model):
-    entity_type = models.ForeignKey(Entity, on_delete=models.CASCADE, default='')
+    entity_type = models.ForeignKey(UserDefinedEntity, on_delete=models.CASCADE, default='')
     data = models.TextField()
     name = models.CharField(blank=True, max_length=128)
     description = models.CharField(blank=True, max_length=256)
@@ -28,5 +35,3 @@ class Datapoint(models.Model):
 
     def __str__(self):
         return self.name
-
-
