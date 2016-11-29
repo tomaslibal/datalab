@@ -28,7 +28,7 @@
 
       <div>Entity type <select name="entity_type">
       {% for et in entity_types %}
-          <option value="{{ et.id }}"{% if et.id == datapoint.entity.id %} selected="selected"{% endif %}>{{ et.name }}</select>
+          <option value="{{ et.id }}"{% if et.id == datapoint.entity_type.id %} selected="selected"{% endif %}>{{ et.name }}</option>
       {% endfor %}
       </select></div>
 
