@@ -15,7 +15,7 @@ dist/
 downloads/
 eggs/
 .eggs/
-lib/
+./lib/
 lib64/
 parts/
 sdist/
@@ -96,3 +96,5 @@ lab/node_modules
 
 # intellij pycharm
 .idea
+
+lab/static/js/lib
