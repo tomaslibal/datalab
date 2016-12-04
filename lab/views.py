@@ -11,6 +11,17 @@ from math import sqrt
 from .models import Datapoint, UserDefinedEntity, Label, Dataset
 from .util.ImageHash import ImageHash
 
+def getObjectsPaginator(collection, page_by, request):
+    paginator = Paginator(collection, page_by)
+    page = request.GET.get('page', 1)
+    try:
+        collection = paginator.page(page)
+    except PageNotAnInteger:
+        collection = paginator.page(1)
+    except EmptyPage:
+        collection = paginator.page(paginator.num_pages)
+    return collection
+
 def home(request):
     latest_dps = Datapoint.objects.order_by('-id')[:16]
     return render(request, 'lab/home.html', { 'latest_dps': latest_dps })
@@ -18,14 +29,7 @@ def home(request):
 def datapoints(request):
     page_by = apps.get_app_config('lab').paginate_by
     datapoints = Datapoint.objects.all()
-    paginator = Paginator(datapoints, page_by)
-    page = request.GET.get('page', 1)
-    try:
-        datapoints = paginator.page(page)
-    except PageNotAnInteger:
-        datapoints = paginator.page(1)
-    except EmptyPage:
-        datapoints = paginator.page(paginator.num_pages)
+    datapoints = getObjectsPaginator(datapoints, page_by, request)
 
     return render(request, 'lab/datapoints.html', {'datapoints': datapoints})
 
@@ -82,6 +86,8 @@ def entity_detail(request, entity_id):
 
 def labels(request):
     labels = Label.objects.all()
+    page_by = apps.get_app_config('lab').paginate_by
+    labels = getObjectsPaginator(labels, page_by, request)
     return render(request, 'lab/labels.html', { 'labels': labels })
 
 def label_details(request, label_id):
