@@ -25,6 +25,8 @@ urlpatterns = [
     url(r'entities/(?P<entity_id>\d{0,16})/$', views.entity_detail, name='entity_detail'),
 
     url(r'api/labels/(?P<label_id>\d{0,16})/usagenum/$', views.num_datapoints_use_label, name='num_datapoints_use_label'),
+    url(r'api/label/(?P<label_id>\d{0,16})/delete/$', views.label_delete),
+
     url(r'^api/datapoints/as_csv/$', AsCsvController.as_view(), name='download_as_csv'),
     url(r'^api/datapoint/(?P<datapoint_id>\d{0,16})/labels/$', AddDatapointLabelController.as_view(), name='datapoint_label_manager'),
     url(r'^api/datapoint/(?P<datapoint_id>\d{0,16})/label/(?P<label_id>\d{0,16})/delete$', views.delete_dp_label, name='datapoint_label_delete'),

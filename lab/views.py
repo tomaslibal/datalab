@@ -73,6 +73,10 @@ def label_details(request, label_id):
     label = Label.objects.get(id=label_id)
     return render(request, 'lab/detail_label.html', { 'label': label })
 
+def label_delete(request, label_id):
+    Label.objects.filter(id=label_id).delete()
+    return HttpResponse('OK', content_type="text/plain")
+
 """
 returns how many datapoints use the given label
 """
