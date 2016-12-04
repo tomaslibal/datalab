@@ -24,6 +24,12 @@ class Label(models.Model):
     def __str__(self):
         return self.name
 
+class Dataset(models.Model):
+    name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.name
+
 class Datapoint(models.Model):
     entity_type = models.ForeignKey(UserDefinedEntity, on_delete=models.CASCADE, default='')
     data = models.TextField()
@@ -32,6 +38,7 @@ class Datapoint(models.Model):
     active = models.BooleanField(default=True)
     labels = models.ManyToManyField(Label, blank=True)
     added = models.DateTimeField(auto_now_add=True)
+    dataset = models.ManyToManyField(Dataset, blank=True)
 
     def __str__(self):
         return self.name
