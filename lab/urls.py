@@ -4,6 +4,7 @@ from lab.controllers.AddDatapointController import AddDatapointController
 from lab.controllers.AddDatapointLabelController import AddDatapointLabelController
 from lab.controllers.AsCsvController import AsCsvController
 from lab.controllers.FileImportController import FileImportController
+from lab.controllers.SearchController import SearchController
 from . import views
 
 urlpatterns = [
@@ -14,6 +15,7 @@ urlpatterns = [
     url(r'import/$', views.imports, name='import'),
     url(r'^file-upload/$', FileImportController.as_view(), name='file_upload'),
     url(r'settings/$', views.settings, name='settings'),
+    url(r'search/$', SearchController.as_view(), name='settings'),
 
     url(r'^labels/$', views.labels, name='labels'),
     url(r'^label/(?P<label_id>\d{1,16})$', views.label_details, name='label_details'),

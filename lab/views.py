@@ -22,6 +22,23 @@ def getObjectsPaginator(collection, page_by, request):
         collection = paginator.page(paginator.num_pages)
     return collection
 
+def getHashVal(datapoint):
+    if datapoint.entity_type is 'img':
+        h = ImageHash()
+
+        pixels = datapoint.data.split(',')
+        num_pixels = len(pixels)
+        w = int(sqrt(num_pixels))
+
+        pixels_r = [[pixels[i * j] for i in range(w)] for j in range(w)]
+
+        return h.hash(pixels_r)
+    else:
+        return 'n/a'
+
+
+
+
 def home(request):
     latest_dps = Datapoint.objects.order_by('-id')[:16]
     return render(request, 'lab/home.html', { 'latest_dps': latest_dps })
@@ -36,15 +53,8 @@ def datapoints(request):
 def datapoint_details(request, datapoint_id):
     entity_types = UserDefinedEntity.objects.all()
     datapoint = Datapoint.objects.get(id=datapoint_id)
-    h = ImageHash()
 
-    pixels = datapoint.data.split(',')
-    num_pixels = len(pixels)
-    w = int(sqrt(num_pixels))
-
-    pixels_r = [[pixels[i*j] for i in range(w)] for j in range(w)]
-
-    hashval = h.hash(pixels_r)
+    hashval = getHashVal(datapoint)
 
     sets = Dataset.objects.all()
 
