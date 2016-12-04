@@ -30,7 +30,9 @@ def datapoint_details(request, datapoint_id):
 
     hashval = h.hash(pixels_r)
 
-    return render(request, 'lab/detail_datapoint.html', { 'datapoint': datapoint, 'entity_types': entity_types, 'hashval': hashval })
+    sets = Dataset.objects.all()
+
+    return render(request, 'lab/detail_datapoint.html', { 'datapoint': datapoint, 'entity_types': entity_types, 'hashval': hashval, 'datasets': sets })
 
 def delete_dp_label(request, datapoint_id, label_id):
     label = Label.objects.get(id=label_id)

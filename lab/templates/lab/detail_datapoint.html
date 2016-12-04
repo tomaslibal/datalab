@@ -83,6 +83,13 @@
         </button>
     </div>
 
+    <h2>Datasets</h2>
+    <p>This datapoint is in the following datasets (check or uncheck for update the datasets membership)</p>
+
+    {% for set in datasets %}
+        {{ set.name }} <input type="checkbox" name="dataset_id" class="dataset_id_checkbox" value="{{ set.id }}"/><br>
+    {% endfor %}
+
 </div>
 
 {% endblock %}
