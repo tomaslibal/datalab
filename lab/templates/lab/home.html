@@ -38,12 +38,13 @@
     </div>
     <div class="mdl-cell mdl-cell--12-col">
         <h2>Search</h2>
-
-        <form method="post" action="/search/">{% csrf_token %}
-            <input type="text" name="q" id="q">
-            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-                <i class="material-icons">search</i>
-            </button>
-        </form>
+        <div class="search_form">
+            <form method="post" action="/search/">{% csrf_token %}
+                <input type="text" name="q" id="q">
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                    <i class="material-icons">search</i>
+                </button>
+            </form>
+        </div><!--/.search_form-->
     </div>
     {% endblock %}

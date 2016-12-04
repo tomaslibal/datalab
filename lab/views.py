@@ -72,7 +72,8 @@ def datasets(request):
 @csrf_protect
 def imports(request):
     entity_types = UserDefinedEntity.objects.all()
-    return render(request, 'lab/import.html', { 'entity_types': entity_types })
+    datasets = Dataset.objects.all()
+    return render(request, 'lab/import.html', { 'entity_types': entity_types, 'datasets': datasets })
 
 def settings(request):
     settings = {}

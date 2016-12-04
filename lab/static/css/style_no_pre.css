@@ -234,3 +234,33 @@ body .mdl-button--fab.mdl-button--mini-fab {
     height: 35px;
     margin-top: -5px;
 }
+
+
+.mdl-list .mdl-list__item {
+    padding: 0px;
+    height: 32px;
+    margin: 0px 0;
+    min-height: 0px;
+}
+
+.mdl-list .mdl-radio {
+    margin-top: -23px;
+}
+
+.mdl-list .item_name {
+    padding-top: 0px;
+    padding-left: 0px;
+}
+
+.search_form {
+}
+
+.search_form input {
+    height: 35px;
+    min-width: 60%;
+}
+
+.search_form button.mdl-button {
+height: 40px;
+margin-top: -6px;
+}

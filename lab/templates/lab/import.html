@@ -3,22 +3,37 @@
 {% block content %}
 
 <div class="mdl-cell mdl-cell--2-col">
-    <p>Select the entity</p>
 
     <ul class="demo-list-item mdl-list">
+        <p><strong>Select the entity</strong></p>
         {% for entity in entity_types %}
         <li class="mdl-list__item">
-            <span class="mdl-list__item-primary-content">
-              <span>{{ entity.name }}</span>
-            </span>
-            <span class="mdl-list__item-secondary-action">
-                <label class="demo-list-radio mdl-radio mdl-js-radio mdl-js-ripple-effect" for="entity_{{ entity.id }}">
+            <span class="mdl-list__item">
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="entity_{{ entity.id }}">
                   <input type="radio" id="entity_{{ entity.id }}" class="mdl-radio__button" name="entity_id" value="{{ entity.id }}" />
                 </label>
+                <span class="mdl-radio__label item_name">{{ entity.name }}</span>
             </span>
          </li>
         {% endfor %}
     </ul>
+
+
+
+    <ul class="demo-list-item mdl-list">
+        <p><strong>Select the datasets</strong></p>
+        {% for set in datasets %}
+        <li class="mdl-list__item">
+            <span class="mdl-list__item">
+                <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="set_{{ set.id }}">
+                  <input type="checkbox" id="set_{{ set.id }}" class="mdl-radio__button" name="set_id" value="{{ set.id }}" />
+                </label>
+                <span class="mdl-radio__label item_name">{{ set.name }}</span>
+            </span>
+         </li>
+        {% endfor %}
+    </ul>
+
 </div>
 <div class="mdl-cell mdl-cell--2-col click-capture-labels">
     <p>Add labels</p>
