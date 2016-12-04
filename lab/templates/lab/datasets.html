@@ -6,18 +6,42 @@
 
     <p>Choose the format of the output CSV file by clicking on the "download" button on the cards below.</p>
 
-<div class="demo-card-event mdl-card mdl-shadow--2dp">
-  <div class="mdl-card__title mdl-card--expand">
-    <h4>
-      <pre>wswtm</pre> format
-    </h4>
-  </div>
-  <div class="mdl-card__actions mdl-card--border">
-    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/api/datapoints/as_csv">
-      Download
-    </a>
-  </div>
+    <h3>1) Select the dataset(s)</h3>
+    {% for set in datasets %}
+        {{ set.name }} <input type="checkbox" name="dataset_id" class="dataset_id_checkbox" value="{{ set.id }}"/><br>
+    {% endfor %}
+
+    <h3>2) Choose the format</h3>
 </div>
 
+<div class="mdl-cell mdl-cell--2-col">
+    <div class="demo-card-event mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title mdl-card--expand">
+        <h4>
+          <pre>wswtm</pre> format
+        </h4>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/api/datapoints/as_csv">
+          Download
+        </a>
+      </div>
+    </div>
 </div>
+
+<div class="mdl-cell mdl-cell--2-col">
+    <div class="demo-card-event mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title mdl-card--expand">
+        <h4>
+          <pre>uadet2</pre> format
+        </h4>
+      </div>
+      <div class="mdl-card__actions mdl-card--border">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/api/datapoints/as_csv">
+          Download
+        </a>
+      </div>
+    </div>
+</div>
+
 {% endblock %}

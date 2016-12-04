@@ -6,7 +6,7 @@ from PIL import Image
 
 from math import sqrt
 
-from .models import Datapoint, UserDefinedEntity, Label
+from .models import Datapoint, UserDefinedEntity, Label, Dataset
 from .util.ImageHash import ImageHash
 
 def home(request):
@@ -38,7 +38,8 @@ def delete_dp_label(request, datapoint_id, label_id):
     return HttpResponse('OK')
 
 def datasets(request):
-    return render(request, 'lab/datasets.html', {})
+    sets = Dataset.objects.all()
+    return render(request, 'lab/datasets.html', { 'datasets': sets })
 
 @csrf_protect
 def imports(request):
