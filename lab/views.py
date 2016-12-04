@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_protect
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.apps import apps
 
 from PIL import Image
 
@@ -15,8 +16,9 @@ def home(request):
     return render(request, 'lab/home.html', { 'latest_dps': latest_dps })
 
 def datapoints(request):
+    page_by = apps.get_app_config('lab').paginate_by
     datapoints = Datapoint.objects.all()
-    paginator = Paginator(datapoints, 10)
+    paginator = Paginator(datapoints, page_by)
     page = request.GET.get('page', 1)
     try:
         datapoints = paginator.page(page)
