@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.csrf import csrf_protect
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 from PIL import Image
 
@@ -15,6 +16,15 @@ def home(request):
 
 def datapoints(request):
     datapoints = Datapoint.objects.all()
+    paginator = Paginator(datapoints, 10)
+    page = request.GET.get('page', 1)
+    try:
+        datapoints = paginator.page(page)
+    except PageNotAnInteger:
+        datapoints = paginator.page(1)
+    except EmptyPage:
+        datapoints = paginator.page(paginator.num_pages)
+
     return render(request, 'lab/datapoints.html', {'datapoints': datapoints})
 
 def datapoint_details(request, datapoint_id):

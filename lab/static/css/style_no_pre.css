@@ -214,3 +214,23 @@ body .mdl-button--fab.mdl-button--mini-fab {
   font-size: 14px;
   font-weight: 500;
 }
+
+.pagination {
+    margin: 20px 0;
+}
+
+.pagination a {
+    font-weight: bold;
+}
+
+.pagination .pagination_form {
+    margin: 20px 0 0 0;
+}
+
+.pagination .pagination_form input {
+    height: 27px;
+}
+.pagination .pagination_form button {
+    height: 35px;
+    margin-top: -5px;
+}

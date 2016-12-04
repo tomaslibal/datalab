@@ -59,6 +59,30 @@
     {% endfor %}
       </tbody>
     </table>
+
+    <div class="pagination">
+        <strong>Navigate datapoints pages:</strong>
+        <div class="step-links">
+            {% if datapoints.has_previous %}
+                <a href="?page={{ datapoints.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ datapoints.number }} of {{ datapoints.paginator.num_pages }}.
+            </span>
+
+            {% if datapoints.has_next %}
+                <a href="?page={{ datapoints.next_page_number }}">next</a>
+            {% endif %}
+        </div>
+        <div class="pagination_form">
+            <form action="?" method="get">Go to page # <input type="number" name="page"/>
+                <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
+                  <i class="material-icons">check</i>
+                </button>
+            </form>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
