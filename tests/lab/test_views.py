@@ -26,3 +26,6 @@ class ViewsTest(TestCase):
         # Use this syntax for class-based views.
         # response = MyView.as_view()(request)
         self.assertEqual(response.status_code, 200)
+
+    def test_label_detail(self):
+        pass
