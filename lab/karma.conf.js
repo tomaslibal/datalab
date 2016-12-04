@@ -5,6 +5,9 @@ module.exports = function(config) {
     frameworks: ['jasmine', 'requirejs'],
 
     files: [
+      'node_modules/requirejs/require.js',
+      'node_modules/karma-requirejs/lib/adapter.js',
+
       "static/js/build/*.js",
       "static/js/test/**/*.js"
     ],
