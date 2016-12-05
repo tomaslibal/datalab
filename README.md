@@ -17,6 +17,12 @@ stores the data in a specific way.
 When storing image data, this entity extracts the pixel array and stores
 it in 3-tuples of RGB components.
 
+### Generic entity
+
+This is the default entity which stores data as ASCII text. There is no special purpose (pre-)processing.
+
+## Screenshot
+
 ![datapoints table screenshot](http://libal.eu/imghost/datalab_screen_0001.PNG)
 
 ## Installation
