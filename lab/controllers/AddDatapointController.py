@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.views.generic import View
 
 import tempfile
@@ -9,15 +9,17 @@ from lab.lib.ImageEntityProcessor import ImageEntityProcessor
 from lab.models import Datapoint, UserDefinedEntity, Label
 
 
-def handle_uploaded_file(f, entity_type):
+def handle_uploaded_file(f, entity_id, labels):
+    et = UserDefinedEntity.objects.get(pk=entity_id)
     tmp = tempfile.NamedTemporaryFile(mode='wb+', dir='.')
     for chunk in f.chunks():
         tmp.write(chunk)
     tmp.seek(0)
-    if entity_type == 'img':
-        res = ImageEntityProcessor.process(tmp.name)
+    if et.entity_type is 'img':
+        res = ImageEntityProcessor.process(tmp.name, labels, et)
     else:
-        res = GenericEntityProcessor.process(tmp.name)
+        print("****************" + entity_id)
+        res = GenericEntityProcessor.process(tmp.name, labels, et)
     tmp.close()
     return res
 
@@ -32,23 +34,18 @@ class AddDatapointController(View):
         desc = request.POST['desc']
         d = request.POST['data']
         et_id = request.POST['entity_type']
-        et = UserDefinedEntity.objects.get(pk=et_id)
         uploads = request.FILES.get('image', None)
+        label_names = request.POST.getlist('labels[]', [])
         
         if uploads is not None:
-            d, _, _ = handle_uploaded_file(uploads, et.entity_type)
+            dp = handle_uploaded_file(uploads, et_id, label_names)
+        else:
+            dp = Datapoint(name=name, description=desc, data=d)
+            dp.save()
+            # add labels...
 
-        label_names = request.POST.getlist('labels[]', [])
-
-        dp = Datapoint(entity_type=et, name=name, data=d, description=desc)
-        dp.save()        
-
-        for label in label_names:
-            if len(label) > 0:
-                obj, created = Label.objects.get_or_create(
-                    name=label
-                )
-                dp.labels.add(obj)
-
+        dp.name = name
+        dp.description = desc
         dp.save()
+
         return HttpResponseRedirect('/', { 'msg_ok': 'datapoint_added' })
