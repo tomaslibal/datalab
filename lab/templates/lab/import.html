@@ -10,14 +10,13 @@
         <li class="mdl-list__item">
             <span class="mdl-list__item">
                 <label class="mdl-radio mdl-js-radio mdl-js-ripple-effect" for="entity_{{ entity.id }}">
-                  <input type="radio" id="entity_{{ entity.id }}" class="mdl-radio__button" name="entity_id" value="{{ entity.id }}" />
+                    <input type="radio" id="entity_{{ entity.id }}" class="mdl-radio__button" name="entity_id" value="{{ entity.id }}" />
                 </label>
                 <span class="mdl-radio__label item_name">{{ entity.name }}</span>
             </span>
          </li>
         {% endfor %}
     </ul>
-
 
 
     <ul class="demo-list-item mdl-list">
@@ -45,13 +44,25 @@
 <div class="mdl-cell mdl-cell--8-col">
 
     <form action="/file-upload/" class="dropzone import-drop-zone" enctype="multipart/form-data">{% csrf_token %}
-        <input type="hidden" name="entity_id" value="{{ entity_types.0.id }}"/>
+        <input type="hidden" id="real_entity_id" name="entity_id" value="{{ entity_types.0.id }}"/>
         <div class="fallback">
             <input name="file" type="file" multiple />
         </div>
     </form>
 
 </div>
+
+
+<script>
+    var radios = document.querySelectorAll('.mdl-radio__button');
+    var et_id_el = document.getElementById("real_entity_id");
+    for(var i = 0; i < radios.length; i += 1) {
+        radios[i].addEventListener("click", function(event) {
+            var id = event.target.value;
+            et_id_el.value = id;
+        });
+    }
+</script>
 
 <script src="{% static 'js/dropzone.js' %}"></script>
 {% endblock %}
