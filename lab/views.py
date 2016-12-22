@@ -8,6 +8,7 @@ from PIL import Image
 
 from math import sqrt
 
+from .lib.AvailableEntities import AVAILABLE_ENTITIES
 from .models import Datapoint, UserDefinedEntity, Label, Dataset
 from .util.ImageHash import ImageHash
 
@@ -90,6 +91,13 @@ def add_datapoint(request):
 def entities(request):
     entities = UserDefinedEntity.objects.all()
     return render(request, 'lab/entities.html', { 'entities': entities })
+
+def add_entity(request):
+    entities = []
+    for tuple in AVAILABLE_ENTITIES:
+        entities.append({ 'id': tuple[0], 'name': tuple[1]})
+    return render(request, 'lab/add_entity.html', { 'avail_entities': entities })
+
 
 def entity_detail(request, entity_id):
     entity = UserDefinedEntity.objects.get(id=entity_id)

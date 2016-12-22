@@ -3,9 +3,15 @@
 {% block content %}
 
 <div class="mdl-cell mdl-cell--1-col">
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+    <button class="goto-add-entity mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
         Add Entity
     </button>
+    <script>
+        var bt = document.querySelector(".goto-add-entity");
+        bt.addEventListener("click", function() {
+            location.href = "/add_entity";
+        });
+    </script>
 </div>
 
 <div class="mdl-cell mdl-cell--11-col">

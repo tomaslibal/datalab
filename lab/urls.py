@@ -5,6 +5,7 @@ from lab.controllers.AddDatapointLabelController import AddDatapointLabelControl
 from lab.controllers.AsCsvController import AsCsvController
 from lab.controllers.FileImportController import FileImportController
 from lab.controllers.SearchController import SearchController
+from lab.controllers.AddEntityController import AddEntityController
 from . import views
 
 urlpatterns = [
@@ -25,6 +26,9 @@ urlpatterns = [
     url(r'^datapoint/(?P<datapoint_id>\d{0,16})$', views.datapoint_details, name='datapoint_details'),
     url(r'entities/$', views.entities, name='entities'),
     url(r'entities/(?P<entity_id>\d{0,16})/$', views.entity_detail, name='entity_detail'),
+    url(r'add_entity/$', views.add_entity),
+
+    url(r'api/entity/$', AddEntityController.as_view()),
 
     url(r'api/labels/(?P<label_id>\d{0,16})/usagenum/$', views.num_datapoints_use_label, name='num_datapoints_use_label'),
     url(r'api/label/(?P<label_id>\d{0,16})/delete/$', views.label_delete),
