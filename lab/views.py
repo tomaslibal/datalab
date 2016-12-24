@@ -68,6 +68,8 @@ def delete_dp_label(request, datapoint_id, label_id):
 
 def datasets(request):
     sets = Dataset.objects.all()
+    if len(sets) is 0:
+        sets = None
     return render(request, 'lab/datasets.html', { 'datasets': sets })
 
 @csrf_protect

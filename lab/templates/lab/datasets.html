@@ -2,14 +2,23 @@
 
 {% block content %}
 <div class="mdl-cell mdl-cell--12-col">
-    <h2>Download as CSV</h2>
+    <h2>Download datasets</h2>
 
-    <p>Choose the format of the output CSV file by clicking on the "download" button on the cards below.</p>
+    <p>Choose the format of the output file by clicking on the "download" button on the cards below.</p>
 
     <h3>1) Select the dataset(s)</h3>
     {% for set in datasets %}
-        {{ set.name }} <input type="checkbox" name="dataset_id" class="dataset_id_checkbox" value="{{ set.id }}"/><br>
+        <div>
+            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" for="entity_{{ set.id }}">
+                <input type="checkbox" id="entity_{{ set.id }}" class="mdl-checkbox__input dataset_id_checkbox" name="dataset_id" value="{{ set.id }}" />
+                <span class="mdl-checkbox__label item_name">{{ set.name }}</span>
+            </label>
+        </div>
     {% endfor %}
+
+    {% if datasets == None  %}
+        No datasets defined
+    {% endif %}
 
     <h3>2) Choose the format</h3>
 </div>
@@ -22,7 +31,7 @@
         </h4>
       </div>
       <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect download_link" href="/api/datapoints/as_csv">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect download_link" href="/api/datapoints/download/wswtm">
           Download
         </a>
       </div>
@@ -37,7 +46,7 @@
         </h4>
       </div>
       <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect download_link" href="/api/datapoints/as_uadet">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect download_link" href="/api/datapoints/download/uadet">
           Download
         </a>
       </div>
