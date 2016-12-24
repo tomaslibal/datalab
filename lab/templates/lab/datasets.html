@@ -22,7 +22,7 @@
         </h4>
       </div>
       <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/api/datapoints/as_csv">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect download_link" href="/api/datapoints/as_csv">
           Download
         </a>
       </div>
@@ -37,11 +37,41 @@
         </h4>
       </div>
       <div class="mdl-card__actions mdl-card--border">
-        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" href="/api/datapoints/as_csv">
+        <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect download_link" href="/api/datapoints/as_uadet">
           Download
         </a>
       </div>
     </div>
 </div>
+
+<script>
+    var download_links = document.querySelectorAll(".download_link");
+
+    function get_selected_datasets() {
+        var datasets = document.querySelectorAll('.dataset_id_checkbox');
+        var sel = [];
+        for (var i = 0; i < datasets.length; i += 1) {
+            if (datasets[i].checked) {
+                sel.push(datasets[i].value);
+            }
+        }
+        return sel;
+    }
+
+    for(var i = 0; i < download_links.length; i += 1) {
+        download_links[i].addEventListener("click", function(event) {
+            event.preventDefault();
+            var ids = get_selected_datasets();
+            if (ids.length === 0) {
+                alert('select a dataset');
+                return;
+            }
+            var link = this.href || '';
+            link += '?dataset_ids=' + ids.join(',');
+            location.replace(link);
+        });
+    }
+
+</script>
 
 {% endblock %}

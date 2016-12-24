@@ -6,6 +6,7 @@ from lab.controllers.AsCsvController import AsCsvController
 from lab.controllers.FileImportController import FileImportController
 from lab.controllers.SearchController import SearchController
 from lab.controllers.AddEntityController import AddEntityController
+from lab.controllers.AsUadetController import AsUadetController
 from . import views
 
 urlpatterns = [
@@ -34,6 +35,7 @@ urlpatterns = [
     url(r'api/label/(?P<label_id>\d{0,16})/delete/$', views.label_delete),
 
     url(r'^api/datapoints/as_csv/$', AsCsvController.as_view(), name='download_as_csv'),
+    url(r'^api/datapoints/as_uadet/$', AsUadetController.as_view()),
     url(r'^api/datapoint/(?P<datapoint_id>\d{0,16})/labels/$', AddDatapointLabelController.as_view(), name='datapoint_label_manager'),
     url(r'^api/datapoint/(?P<datapoint_id>\d{0,16})/label/(?P<label_id>\d{0,16})/delete$', views.delete_dp_label, name='datapoint_label_delete'),
     url(r'^api/datapoint/as_image/(?P<datapoint_id>\d{0,16})/$', views.entity_image, name='entity_image'),
