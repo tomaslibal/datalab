@@ -49,4 +49,4 @@ class AddDatapointController(View):
         dp.description = desc
         dp.save()
 
-        return HttpResponseRedirect('/', { 'msg_ok': 'datapoint_added' })
+        return HttpResponseRedirect('/?msg_ok=datapoint_added')
