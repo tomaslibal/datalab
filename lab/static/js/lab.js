@@ -218,7 +218,15 @@ function updateActiveActionsBt(location) {
 
 function deleteDatapointHandler(event) {
     var id = event.target.dataset.id;
-    window.location = '/datapoint/' + id + '/delete';
+    var url = '/api/datapoint/' + id + '/delete';
+    var datapointRow = document.querySelector("#dp" + id);
+    // send a DELETE request to /api/datapoint/{{id}}
+    sendReq(url, 'GET', undefined, function() {
+        var res = this.responseText;
+        if (res === 'OK') {
+            datapointRow.remove();
+        }
+    });
 }
 
 function detailDatapointHandler(event){

@@ -21,7 +21,10 @@ def label_delete(request, label_id):
     Label.objects.filter(id=label_id).delete()
     return HttpResponse('OK', content_type="text/plain")
 
-
+def delete_datapoint(request, datapoint_id):
+    dp = Datapoint.objects.get(pk=datapoint_id)
+    res = dp.delete()
+    return HttpResponse('OK', content_type="text/plain")
 
 def entity_image(request, datapoint_id, out_w=32, out_h=32):
     # passed in arguments from django url are always strings
