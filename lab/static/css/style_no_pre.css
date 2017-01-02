@@ -69,10 +69,6 @@ a, a:visited {
 }
 
 
-h1 {
-
-}
-
 .container {
     padding: 0 20px;
 }
@@ -263,4 +259,26 @@ body .mdl-button--fab.mdl-button--mini-fab {
 .search_form button.mdl-button {
 height: 40px;
 margin-top: -6px;
+}
+
+.msg {
+    padding: 15px 20px;
+    margin: 20px 0px;
+}
+
+.msg.success {
+    background: #cbff9b;
+    color: black;
+}
+
+.mdl-grid h1 {
+    font-size: 29px;
+}
+
+.mdl-grid h2 {
+    font-size: 25px;
+}
+
+.mdl-grid h3 {
+    font-size: 22px;
 }
