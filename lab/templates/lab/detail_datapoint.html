@@ -5,6 +5,10 @@
 <div class="mdl-cell mdl-cell--6-col">
     <h2 id="datapoint-details">Datapoint details</h2>
 
+    {% if request.GET.msg_ok == 'datapoint_updated' %}
+        <div class="msg success">Datapoint updated</div>
+    {% endif %}
+
     <div>
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input" type="text" id="hash" name="name" value="{{ hashval }}" disabled>
@@ -13,6 +17,7 @@
     </div>
 
     <form action="/api/datapoint/{{ datapoint.id }}" method="POST" name="update_datapoint_form" enctype="multipart/form-data">{% csrf_token %}
+            <input name="dp_id" type="hidden" value="{{ datapoint.id }}">
       <div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input" type="text" id="name" name="name" value="{{ datapoint.name }}">
@@ -21,7 +26,7 @@
       </div>
       <div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="desc" name="desc" value="{{ datapoint.desc }}">
+            <input class="mdl-textfield__input" type="text" id="desc" name="desc" value="{{ datapoint.description }}">
             <label class="mdl-textfield__label" for="desc">Description...</label>
           </div>
       </div>
@@ -52,8 +57,9 @@
           </div>
       </div>
 
-      <div>Or upload a file <input type="file" name="image"></div>
-
+<!--
+      <div>Or upload a file <input type="file" name="datafile"></div>
+-->
         <hr>
 
       <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
