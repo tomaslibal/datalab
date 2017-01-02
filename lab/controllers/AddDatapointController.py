@@ -40,7 +40,8 @@ class AddDatapointController(View):
         if uploads is not None:
             dp = handle_uploaded_file(uploads, et_id, label_names)
         else:
-            dp = Datapoint(name=name, description=desc, data=d)
+            et_type = UserDefinedEntity.objects.get(pk=et_id)
+            dp = Datapoint(name=name, description=desc, data=d, entity_type=et_type)
             dp.save()
             # add labels...
 
