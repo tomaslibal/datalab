@@ -1,9 +1,10 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.views.generic import View
 
 from lab.models import Datapoint, UserDefinedEntity, Label
 
+import json
 
 class DatapointController(View):
     def get(self, request, datapoint_id):
@@ -11,7 +12,7 @@ class DatapointController(View):
         jsondata = {
             'name': dp.name
         }
-        return HttpReponse(jsondata, mimetype='application/json')
+        return HttpResponse(json.dumps(jsondata), content_type='application/json')
 
     def post(self, request, *args, **kwargs):
         dp_id = request.POST['dp_id']
