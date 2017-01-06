@@ -1,8 +1,10 @@
 # datalab
 
-    data lab / and labeller
-
 ## Purpose
+
+Provide the means of ownership of one's data and trained models used in machine learning applications.
+
+## Functions
 
 Store data as datapoints and add labels to each datapoint. Datapoints can
 be organized into different datasets and downloaded as labelled data.
