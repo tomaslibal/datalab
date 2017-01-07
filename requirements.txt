@@ -1,4 +1,5 @@
 django~=1.4.22
+neo4django
 pillow
 numpy
 distance
