@@ -1,5 +1,7 @@
 django==1.10.5
-neo4django
+py2neo
+neomodel
+#django_neomodel
 pillow
 numpy
 distance
